@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Order } from "@/lib/orders";
 import Container from "@/components/Container";
+import ReceiptUpload from "@/components/ReceiptUpload";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("en-NG", {
@@ -98,6 +99,19 @@ export default function OrderConfirmation({ order }: { order: Order }) {
               <li>4. Your order will be processed and shipped</li>
             </ol>
           </div>
+
+          {order.paymentReceiptUrl ? (
+            <div className="mt-6 border-t border-border pt-6">
+              <p className="text-sm font-medium text-foreground">
+                Payment Receipt
+              </p>
+              <p className="mt-2 text-sm text-green-600">
+                Receipt uploaded. We&apos;ll verify your payment shortly.
+              </p>
+            </div>
+          ) : order.status === "PENDING_PAYMENT" ? (
+            <ReceiptUpload reference={order.reference} />
+          ) : null}
         </div>
 
         <div className="mt-8 text-center">
