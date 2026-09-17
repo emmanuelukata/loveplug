@@ -1,7 +1,5 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
+import { Order } from "@/lib/orders";
 import Container from "@/components/Container";
 
 function formatPrice(price: number): string {
@@ -12,52 +10,7 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
-interface OrderData {
-  reference: string;
-  items: Array<{
-    name: string;
-    quantity: number;
-    price: number;
-  }>;
-  total: number;
-  customer: {
-    fullName: string;
-    email: string;
-  };
-}
-
-function loadOrder(): OrderData | null {
-  if (typeof window === "undefined") return null;
-  const data = sessionStorage.getItem("lastOrder");
-  if (data) {
-    sessionStorage.removeItem("lastOrder");
-    return JSON.parse(data);
-  }
-  return null;
-}
-
-export default function OrderConfirmationClient() {
-  const order = useState<OrderData | null>(loadOrder)[0];
-
-  if (!order) {
-    return (
-      <Container className="py-24 text-center">
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
-          Order Confirmed
-        </h1>
-        <p className="mt-4 text-muted">
-          Thank you for your order. We&apos;ll be in touch shortly.
-        </p>
-        <Link
-          href="/products"
-          className="mt-8 inline-block bg-accent px-8 py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
-        >
-          Continue Shopping
-        </Link>
-      </Container>
-    );
-  }
-
+export default function OrderConfirmation({ order }: { order: Order }) {
   return (
     <Container className="py-12 md:py-20">
       <div className="mx-auto max-w-xl text-center">
@@ -83,8 +36,8 @@ export default function OrderConfirmationClient() {
           <div className="mt-6 border-t border-border pt-6">
             <p className="text-sm font-medium text-foreground">Items</p>
             <div className="mt-3 divide-y divide-border">
-              {order.items.map((item, i) => (
-                <div key={i} className="flex justify-between py-2">
+              {order.items.map((item) => (
+                <div key={item.productId} className="flex justify-between py-2">
                   <p className="text-sm text-muted">
                     {item.name} × {item.quantity}
                   </p>
@@ -97,7 +50,7 @@ export default function OrderConfirmationClient() {
             <div className="mt-3 flex justify-between border-t border-border pt-3">
               <p className="text-sm font-medium text-foreground">Total</p>
               <p className="text-sm font-medium text-foreground">
-                {formatPrice(order.total)}
+                {formatPrice(order.subtotal)}
               </p>
             </div>
           </div>
@@ -109,22 +62,29 @@ export default function OrderConfirmationClient() {
             <p className="mt-2 text-sm leading-relaxed text-muted">
               Please make a bank transfer of{" "}
               <strong className="text-foreground">
-                {formatPrice(order.total)}
+                {formatPrice(order.subtotal)}
               </strong>{" "}
               to the account details below. After making the transfer, upload
               your payment receipt on our website for verification.
             </p>
             <div className="mt-4 rounded border border-border p-4">
               <p className="text-sm text-muted">
-                Bank: <span className="text-foreground">[Bank Name]</span>
+                Bank:{" "}
+                <span className="text-foreground">
+                  {process.env.NEXT_PUBLIC_BANK_NAME || "[Bank Name]"}
+                </span>
               </p>
               <p className="text-sm text-muted">
                 Account Name:{" "}
-                <span className="text-foreground">[Account Name]</span>
+                <span className="text-foreground">
+                  {process.env.NEXT_PUBLIC_ACCOUNT_NAME || "[Account Name]"}
+                </span>
               </p>
               <p className="text-sm text-muted">
                 Account Number:{" "}
-                <span className="text-foreground">[Account Number]</span>
+                <span className="text-foreground">
+                  {process.env.NEXT_PUBLIC_ACCOUNT_NUMBER || "[Account Number]"}
+                </span>
               </p>
             </div>
           </div>

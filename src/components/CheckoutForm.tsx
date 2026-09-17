@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart-context";
 import { nigerianStates } from "@/lib/states";
+import { createOrder } from "@/app/actions/order";
 import Container from "./Container";
 
 function formatPrice(price: number): string {
@@ -68,13 +69,6 @@ function validate(data: FormData): FormErrors {
   return errors;
 }
 
-function generateOrderReference(): string {
-  const prefix = "ORD";
-  const timestamp = Date.now().toString(36).toUpperCase();
-  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
-  return `${prefix}-${timestamp}-${random}`;
-}
-
 export default function CheckoutForm() {
   const router = useRouter();
   const { items, total, clearCart } = useCart();
@@ -88,6 +82,7 @@ export default function CheckoutForm() {
     deliveryInstructions: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
@@ -113,32 +108,29 @@ export default function CheckoutForm() {
     }
 
     setIsSubmitting(true);
+    setServerError(null);
 
-    // Placeholder: generate order reference and redirect
-    // In Stage 9, this will be replaced with a server action
-    const reference = generateOrderReference();
-    clearCart();
+    const result = await createOrder({
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      deliveryInstructions: formData.deliveryInstructions,
+      cartItems: items.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+      })),
+    });
 
-    // Store order data temporarily for the confirmation page
-    sessionStorage.setItem(
-      "lastOrder",
-      JSON.stringify({
-        reference,
-        items,
-        total,
-        customer: {
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          address: formData.address,
-          city: formData.city,
-          state: formData.state,
-          deliveryInstructions: formData.deliveryInstructions,
-        },
-      }),
-    );
-
-    router.push(`/order/${reference}`);
+    if (result.success && result.reference) {
+      clearCart();
+      router.push(`/order/${result.reference}`);
+    } else {
+      setServerError(result.error || "Failed to place order. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
   if (items.length === 0) {
@@ -351,6 +343,10 @@ export default function CheckoutForm() {
               className="mt-1 block w-full border border-border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-foreground"
             />
           </div>
+
+          {serverError && (
+            <p className="text-sm text-red-500">{serverError}</p>
+          )}
 
           <button
             type="submit"
