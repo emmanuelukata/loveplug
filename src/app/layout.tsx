@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AgeGate from "@/components/AgeGate";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geist.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
+        <AgeGate />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
