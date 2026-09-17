@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "./Container";
+import CartIcon from "./CartIcon";
 
 export default function Header() {
   return (
@@ -12,9 +13,7 @@ export default function Header() {
           <Link href="/products" className="transition-colors hover:text-foreground">
             Shop
           </Link>
-          <Link href="/cart" className="transition-colors hover:text-foreground">
-            Cart
-          </Link>
+          <CartIcon />
         </nav>
       </Container>
     </header>

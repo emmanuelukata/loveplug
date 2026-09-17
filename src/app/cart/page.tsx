@@ -1,16 +1,10 @@
-import Container from "@/components/Container";
+import { Metadata } from "next";
+import CartContents from "@/components/CartContents";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Cart",
 };
 
 export default function CartPage() {
-  return (
-    <Container className="py-24 text-center">
-      <h1 className="text-3xl font-light tracking-tight text-foreground">
-        Cart
-      </h1>
-      <p className="mt-4 text-muted">Cart coming soon</p>
-    </Container>
-  );
+  return <CartContents />;
 }
