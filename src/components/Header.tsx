@@ -7,7 +7,7 @@ export default function Header() {
     <header className="border-b border-border">
       <Container className="flex items-center justify-between py-4">
         <Link href="/" className="text-lg font-medium tracking-tight">
-          Store
+          loveplug
         </Link>
         <nav className="flex items-center gap-6 text-sm text-muted">
           <Link href="/products" className="transition-colors hover:text-foreground">

@@ -11,7 +11,7 @@ export default function Hero() {
           thoughtfully made
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted">
-          Discover our curated collection of products designed with care.
+          Discover our curated collection of lifestyle and wellness products.
           Simple, premium, and made for you.
         </p>
         <Link

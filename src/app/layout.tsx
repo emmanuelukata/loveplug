@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AgeGate from "@/components/AgeGate";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { CartProvider } from "@/lib/cart-context";
 
 const geist = Geist({
@@ -13,10 +14,10 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: "Store",
-    template: "%s | Store",
+    default: "loveplug",
+    template: "%s | loveplug",
   },
-  description: "Discover our collection",
+  description: "Quality lifestyle and wellness essentials",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>
