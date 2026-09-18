@@ -47,26 +47,26 @@ export default function AgeGate() {
       aria-modal="true"
       aria-label="Age verification"
     >
-      <div className="w-full max-w-md px-6 text-center">
+      <div className="w-full max-w-md px-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight text-tertiary">
           Age Verification
         </h1>
-        <p className="mt-4 text-tertiary/70 leading-relaxed">
+        <p className="mt-5 text-base leading-relaxed text-tertiary/80">
           This website contains content intended for adults aged 18 and over.
           By entering, you confirm you are of legal age.
         </p>
-        <div className="mt-8 flex flex-col gap-3">
+        <div className="mt-10 flex flex-col gap-4">
           <button
             onClick={handleConfirm}
-            className="w-full bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
+            className="w-full bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
           >
             I confirm I am 18+
           </button>
           <button
             onClick={handleExit}
-            className="w-full border border-tertiary/30 px-8 py-3 text-sm font-medium text-tertiary/70 transition-colors hover:border-tertiary hover:text-tertiary"
+            className="w-full border-2 border-tertiary/40 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-tertiary transition-colors hover:border-tertiary hover:bg-tertiary/10"
           >
-            Exit
+            I am under 18
           </button>
         </div>
       </div>
