@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="inline-block bg-primary px-6 py-2 text-xs font-semibold uppercase tracking-wider text-tertiary">
+          <span className="inline-block px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white" style={{ backgroundColor: "#BF00FF" }}>
             Quick Add
           </span>
         </div>

@@ -165,7 +165,8 @@ export default function OrderConfirmation({ order }: { order: Order }) {
               <button
                 onClick={handlePaymentConfirm}
                 disabled={submitting}
-                className="mt-4 w-full bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover disabled:opacity-50"
+                className="mt-4 w-full py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90 disabled:opacity-50"
+                style={{ backgroundColor: "#BF00FF" }}
               >
                 {submitting ? "Submitting..." : "I've Made Payment"}
               </button>

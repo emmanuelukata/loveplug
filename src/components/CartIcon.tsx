@@ -24,7 +24,7 @@ export default function CartIcon() {
         <path d="M16 10a4 4 0 0 1-8 0" />
       </svg>
       {itemCount > 0 && (
-        <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-tertiary">
+        <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-medium text-white" style={{ backgroundColor: "#BF00FF" }}>
           {itemCount}
         </span>
       )}

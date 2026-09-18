@@ -25,9 +25,10 @@ export default function ProductGrid({
           onClick={() => setSelectedCategory("All")}
           className={`px-4 py-2 text-sm transition-colors ${
             selectedCategory === "All"
-              ? "bg-primary text-tertiary"
+              ? "text-white"
               : "text-muted hover:text-foreground"
           }`}
+          style={selectedCategory === "All" ? { backgroundColor: "#BF00FF" } : undefined}
         >
           All
         </button>
@@ -37,9 +38,10 @@ export default function ProductGrid({
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 text-sm transition-colors ${
               selectedCategory === category
-                ? "bg-primary text-tertiary"
+                ? "text-white"
                 : "text-muted hover:text-foreground"
             }`}
+            style={selectedCategory === category ? { backgroundColor: "#BF00FF" } : undefined}
           >
             {category}
           </button>

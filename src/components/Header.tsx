@@ -9,18 +9,22 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
+    <header className="sticky top-0 z-50" style={{ backgroundColor: "#ffffff", borderBottom: "1px solid #e0e0e0" }}>
       <Container className="flex items-center justify-between py-4">
-        <Link href="/" className="text-xl font-bold tracking-tight text-foreground">
+        <Link
+          href="/"
+          className="text-xl font-bold tracking-tight"
+          style={{ fontFamily: "var(--font-display)", color: "#111111" }}
+        >
           loveplug
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground md:flex">
-          <Link href="/products" className="transition-colors hover:text-primary">
+        <nav className="hidden items-center gap-8 text-sm font-medium md:flex" style={{ color: "#111111" }}>
+          <Link href="/products" className="transition-colors hover:opacity-70">
             Shop
           </Link>
-          <Link href="/order/lookup" className="transition-colors hover:text-primary">
+          <Link href="/order/lookup" className="transition-colors hover:opacity-70">
             Track Order
           </Link>
           <CartIcon />
@@ -31,7 +35,8 @@ export default function Header() {
           <CartIcon />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-foreground transition-colors hover:text-primary"
+            className="transition-colors hover:opacity-70"
+            style={{ color: "#111111" }}
             aria-label="Toggle menu"
           >
             {menuOpen ? (
@@ -52,12 +57,12 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="border-t border-border bg-background md:hidden">
-          <Container className="flex flex-col gap-4 py-4 text-sm font-medium text-foreground">
-            <Link href="/products" onClick={() => setMenuOpen(false)} className="transition-colors hover:text-primary">
+        <div className="md:hidden" style={{ backgroundColor: "#ffffff", borderTop: "1px solid #e0e0e0" }}>
+          <Container className="flex flex-col gap-4 py-4 text-sm font-medium">
+            <Link href="/products" onClick={() => setMenuOpen(false)} className="transition-colors hover:opacity-70">
               Shop
             </Link>
-            <Link href="/order/lookup" onClick={() => setMenuOpen(false)} className="transition-colors hover:text-primary">
+            <Link href="/order/lookup" onClick={() => setMenuOpen(false)} className="transition-colors hover:opacity-70">
               Track Order
             </Link>
           </Container>

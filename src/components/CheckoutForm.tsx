@@ -142,7 +142,8 @@ export default function CheckoutForm() {
         <p className="mt-4 text-muted">Your cart is empty</p>
         <Link
           href="/products"
-          className="mt-8 inline-block bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
+          className="mt-8 inline-block px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
+          style={{ backgroundColor: "#BF00FF" }}
         >
           Continue Shopping
         </Link>
@@ -366,7 +367,8 @@ export default function CheckoutForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover disabled:opacity-50"
+            className="w-full py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90 disabled:opacity-50"
+            style={{ backgroundColor: "#BF00FF" }}
           >
             {isSubmitting ? "Placing Order..." : "Place Order"}
           </button>

@@ -35,16 +35,20 @@ export default function CTA() {
         <Container>
           <div className="flex items-end justify-between">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
+              <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: "#BF00FF" }}>
                 Best Sellers
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              <h2
+                className="mt-3 text-3xl font-bold tracking-tight md:text-4xl"
+                style={{ fontFamily: "var(--font-display)", color: "#111111" }}
+              >
                 Featured products
               </h2>
             </div>
             <Link
               href="/products"
-              className="hidden text-sm font-medium text-primary transition-colors hover:text-accent-hover md:block"
+              className="hidden text-sm font-medium transition-colors hover:opacity-80 md:block"
+              style={{ color: "#BF00FF" }}
             >
               View all &rarr;
             </Link>
@@ -57,27 +61,30 @@ export default function CTA() {
                 href={`/products/${product.slug}`}
                 className="group"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-border">
+                <div className="relative aspect-[4/5] overflow-hidden" style={{ backgroundColor: "#f0f0f0" }}>
                   <img
                     src={product.image}
                     alt={product.name}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="inline-block bg-primary px-6 py-2 text-xs font-semibold uppercase tracking-wider text-tertiary">
+                    <span
+                      className="inline-block px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white"
+                      style={{ backgroundColor: "#BF00FF" }}
+                    >
                       Quick Add
                     </span>
                   </div>
                 </div>
                 <div className="mt-4">
-                  <p className="text-xs uppercase tracking-wider text-muted">
+                  <p className="text-xs uppercase tracking-wider" style={{ color: "#555555" }}>
                     {product.category}
                   </p>
-                  <h3 className="mt-1 text-base font-medium text-foreground">
+                  <h3 className="mt-1 text-base font-medium" style={{ color: "#111111" }}>
                     {product.name}
                   </h3>
-                  <p className="mt-1 text-sm text-primary font-medium">
+                  <p className="mt-1 text-sm font-medium" style={{ color: "#BF00FF" }}>
                     {product.price}
                   </p>
                 </div>
@@ -88,7 +95,8 @@ export default function CTA() {
           <div className="mt-10 text-center md:hidden">
             <Link
               href="/products"
-              className="inline-block text-sm font-medium text-primary transition-colors hover:text-accent-hover"
+              className="inline-block text-sm font-medium transition-colors hover:opacity-80"
+              style={{ color: "#BF00FF" }}
             >
               View all products &rarr;
             </Link>
@@ -97,25 +105,29 @@ export default function CTA() {
       </section>
 
       {/* Brand Story */}
-      <section className="bg-secondary py-20 md:py-28">
+      <section style={{ backgroundColor: "#111111" }} className="py-20 md:py-28">
         <Container>
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-20">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
+              <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: "#BF00FF" }}>
                 Our Story
               </p>
-              <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-tertiary md:text-4xl">
+              <h2
+                className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
                 Modern intimacy,
                 <br />
                 redefined.
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-tertiary/70">
+              <p className="mt-6 text-lg leading-relaxed text-white/70">
                 Loveplug is built at the intersection of design, health, and culture. We make intimacy simple, inclusive, and essential to everyday wellbeing.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/products"
-                  className="inline-block bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
+                  className="inline-block px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
+                  style={{ backgroundColor: "#BF00FF" }}
                 >
                   Shop Now
                 </Link>
@@ -133,30 +145,30 @@ export default function CTA() {
       </section>
 
       {/* Trust Bar */}
-      <section className="border-y border-border py-12">
+      <section className="border-y py-12" style={{ borderColor: "#e0e0e0" }}>
         <Container>
           <div className="grid grid-cols-1 gap-8 text-center md:grid-cols-3">
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+              <h3 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "#111111" }}>
                 Nationwide Delivery
               </h3>
-              <p className="mt-2 text-sm text-muted">
+              <p className="mt-2 text-sm" style={{ color: "#555555" }}>
                 We ship to every state in Nigeria. Fast and reliable.
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+              <h3 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "#111111" }}>
                 Secure Payment
               </h3>
-              <p className="mt-2 text-sm text-muted">
+              <p className="mt-2 text-sm" style={{ color: "#555555" }}>
                 Bank transfer with manual verification for your security.
               </p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+              <h3 className="text-sm font-semibold uppercase tracking-wider" style={{ color: "#111111" }}>
                 Exchange Policy
               </h3>
-              <p className="mt-2 text-sm text-muted">
+              <p className="mt-2 text-sm" style={{ color: "#555555" }}>
                 Not satisfied? Exchange defective products hassle-free.
               </p>
             </div>
@@ -167,21 +179,26 @@ export default function CTA() {
       {/* Newsletter */}
       <section className="py-20 md:py-28">
         <Container className="max-w-xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+          <h2
+            className="text-3xl font-bold tracking-tight md:text-4xl"
+            style={{ fontFamily: "var(--font-display)", color: "#111111" }}
+          >
             Stay in the loop
           </h2>
-          <p className="mt-4 text-muted leading-relaxed">
+          <p className="mt-4 leading-relaxed" style={{ color: "#555555" }}>
             Sign up for updates, promotions, and early access to new products.
           </p>
           <form className="mt-8 flex gap-2" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="flex-1 px-4 py-3 text-sm outline-none"
+              style={{ border: "1px solid #e0e0e0", color: "#111111", backgroundColor: "#ffffff" }}
             />
             <button
               type="submit"
-              className="bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-colors hover:bg-accent-hover"
+              className="px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:opacity-90"
+              style={{ backgroundColor: "#BF00FF" }}
             >
               Subscribe
             </button>

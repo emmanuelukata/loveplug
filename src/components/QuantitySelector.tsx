@@ -8,20 +8,20 @@ export default function QuantitySelector({
   onChange: (value: number) => void;
 }) {
   return (
-    <div className="flex items-center border border-border">
+    <div className="inline-flex items-center border border-[#e0e0e0]">
       <button
-        onClick={() => onChange(Math.max(1, value - 1))}
-        className="px-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
+        onClick={() => onChange(Math.max(0, value - 1))}
+        className="px-3 py-1.5 text-sm text-[#555555] transition-colors hover:text-[#111111]"
         aria-label="Decrease quantity"
       >
         −
       </button>
-      <span className="min-w-[3rem] px-3 py-2 text-center text-sm tabular-nums">
+      <span className="min-w-[2rem] px-2 py-1.5 text-center text-sm tabular-nums">
         {value}
       </span>
       <button
         onClick={() => onChange(value + 1)}
-        className="px-3 py-2 text-sm text-muted transition-colors hover:text-foreground"
+        className="px-3 py-1.5 text-sm text-[#555555] transition-colors hover:text-[#111111]"
         aria-label="Increase quantity"
       >
         +

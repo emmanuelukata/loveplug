@@ -61,7 +61,10 @@ export default function ProductInfo({ product }: { product: Product }) {
         <p className="text-xs uppercase tracking-wider text-muted">
           {product.category}
         </p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        <h1
+          className="mt-2 text-2xl font-bold tracking-tight text-[#111111] md:text-3xl"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
           {product.name}
         </h1>
         <p className="mt-3 text-lg font-medium text-primary">
@@ -83,10 +86,10 @@ export default function ProductInfo({ product }: { product: Product }) {
             </div>
             <button
               onClick={handleAddToCart}
-              className={`mt-4 w-full px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all ${
+              className={`mt-4 px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all ${
                 added
                   ? "bg-green-600 text-white"
-                  : "bg-primary text-tertiary hover:bg-accent-hover"
+                  : "bg-[#BF00FF] text-white hover:bg-[#9900CC]"
               }`}
             >
               {added ? "✓ Added to Cart" : "Add to Cart"}
