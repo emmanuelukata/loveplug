@@ -35,6 +35,13 @@ export default function CartContents() {
 
   return (
     <Container className="py-12 md:py-20">
+      <Link
+        href="/products"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Continue Shopping
+      </Link>
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-light tracking-tight text-foreground">
           Your Cart

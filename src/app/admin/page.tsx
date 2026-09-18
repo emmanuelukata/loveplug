@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Order, OrderStatus } from "@/lib/orders";
 import Container from "@/components/Container";
+import AdminGuard from "@/components/AdminGuard";
 import { getAllOrders, updateOrderStatus } from "@/app/actions/admin";
 
 function formatPrice(price: number): string {
@@ -69,6 +70,7 @@ export default function AdminPage() {
   }
 
   return (
+    <AdminGuard>
     <Container className="py-12 md:py-20">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-light tracking-tight text-foreground">
@@ -163,5 +165,6 @@ export default function AdminPage() {
         </div>
       )}
     </Container>
+    </AdminGuard>
   );
 }

@@ -152,6 +152,13 @@ export default function CheckoutForm() {
 
   return (
     <Container className="py-12 md:py-20">
+      <Link
+        href="/cart"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Cart
+      </Link>
       <h1 className="text-3xl font-light tracking-tight text-foreground">
         Checkout
       </h1>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Product } from "@/types/product";
 import { useCart } from "@/lib/cart-context";
 import QuantitySelector from "./QuantitySelector";
@@ -37,7 +38,15 @@ export default function ProductInfo({ product }: { product: Product }) {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+    <div>
+      <Link
+        href="/products"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Shop
+      </Link>
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
       <div className="relative aspect-square overflow-hidden bg-border">
         <Image
           src={product.image}
@@ -81,6 +90,7 @@ export default function ProductInfo({ product }: { product: Product }) {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }
