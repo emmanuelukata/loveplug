@@ -42,29 +42,59 @@ export default function AgeGate() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-secondary"
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#000000",
+      }}
       role="dialog"
       aria-modal="true"
       aria-label="Age verification"
     >
-      <div className="w-full max-w-md px-8 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-tertiary">
+      <div style={{ width: "100%", maxWidth: "28rem", padding: "0 2rem", textAlign: "center" }}>
+        <h1 style={{ fontSize: "2rem", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.025em" }}>
           Age Verification
         </h1>
-        <p className="mt-5 text-base leading-relaxed text-tertiary/80">
+        <p style={{ marginTop: "1.25rem", fontSize: "1rem", lineHeight: 1.6, color: "rgba(255,255,255,0.8)" }}>
           This website contains content intended for adults aged 18 and over.
           By entering, you confirm you are of legal age.
         </p>
-        <div className="mt-10 flex flex-col gap-4">
+        <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
           <button
             onClick={handleConfirm}
-            className="w-full bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
+            style={{
+              width: "100%",
+              padding: "1rem",
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "#ffffff",
+              backgroundColor: "#BF00FF",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
             I confirm I am 18+
           </button>
           <button
             onClick={handleExit}
-            className="w-full border-2 border-tertiary/40 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-tertiary transition-colors hover:border-tertiary hover:bg-tertiary/10"
+            style={{
+              width: "100%",
+              padding: "1rem",
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "#ffffff",
+              backgroundColor: "transparent",
+              border: "2px solid rgba(255,255,255,0.4)",
+              cursor: "pointer",
+            }}
           >
             I am under 18
           </button>
