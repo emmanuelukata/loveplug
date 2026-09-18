@@ -9,7 +9,7 @@ export const metadata = {
 export default function ProductsPage() {
   return (
     <Container className="py-12 md:py-20">
-      <h1 className="text-3xl font-light tracking-tight text-foreground">
+      <h1 className="text-3xl font-bold tracking-tight text-foreground">
         Shop
       </h1>
       <p className="mt-2 text-muted">

@@ -25,7 +25,7 @@ export default function ProductGrid({
           onClick={() => setSelectedCategory("All")}
           className={`px-4 py-2 text-sm transition-colors ${
             selectedCategory === "All"
-              ? "bg-accent text-background"
+              ? "bg-primary text-tertiary"
               : "text-muted hover:text-foreground"
           }`}
         >
@@ -37,7 +37,7 @@ export default function ProductGrid({
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 text-sm transition-colors ${
               selectedCategory === category
-                ? "bg-accent text-background"
+                ? "bg-primary text-tertiary"
                 : "text-muted hover:text-foreground"
             }`}
           >

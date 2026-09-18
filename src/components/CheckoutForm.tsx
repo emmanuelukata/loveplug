@@ -136,13 +136,13 @@ export default function CheckoutForm() {
   if (items.length === 0) {
     return (
       <Container className="py-24 text-center">
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Checkout
         </h1>
         <p className="mt-4 text-muted">Your cart is empty</p>
         <Link
           href="/products"
-          className="mt-8 inline-block bg-accent px-8 py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
+          className="mt-8 inline-block bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
         >
           Continue Shopping
         </Link>
@@ -159,7 +159,7 @@ export default function CheckoutForm() {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         Back to Cart
       </Link>
-      <h1 className="text-3xl font-light tracking-tight text-foreground">
+      <h1 className="text-3xl font-bold tracking-tight text-foreground">
         Checkout
       </h1>
 
@@ -366,7 +366,7 @@ export default function CheckoutForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-accent py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover disabled:opacity-50"
+            className="w-full bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover disabled:opacity-50"
           >
             {isSubmitting ? "Placing Order..." : "Place Order"}
           </button>

@@ -2,19 +2,22 @@
 
 :root {
   /* Colors */
-  --background: #faf9f7;
-  --foreground: #1a1a1a;
-  --muted: #5a5a5a;
-  --border: #e5e4e1;
-  --accent: #2d2d2d;
-  --accent-hover: #1a1a1a;
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #666666;
+  --border: #e5e5e5;
+  --accent: #BF00FF;
+  --accent-hover: #9900CC;
+  --primary: #BF00FF;
+  --secondary: #000000;
+  --tertiary: #ffffff;
 
   /* Typography */
   --font-sans: var(--font-geist);
 
   /* Spacing */
-  --container-max: 1200px;
-  --container-padding: 1.25rem;
+  --container-max: 1400px;
+  --container-padding: 1.5rem;
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -28,6 +31,9 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
   --font-sans: var(--font-geist);
 }
 

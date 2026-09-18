@@ -22,13 +22,13 @@ export default function CartContents() {
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-muted"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         </div>
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Your Cart
         </h1>
         <p className="mt-4 text-muted">Your cart is empty</p>
         <Link
           href="/products"
-          className="mt-8 inline-block bg-accent px-8 py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
+          className="mt-8 inline-block bg-primary px-8 py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
         >
           Start Shopping
         </Link>
@@ -46,12 +46,12 @@ export default function CartContents() {
         Continue Shopping
       </Link>
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Your Cart
         </h1>
         <button
           onClick={clearCart}
-          className="text-xs text-muted transition-colors hover:text-foreground"
+          className="text-xs font-medium text-muted transition-colors hover:text-foreground"
         >
           Clear Cart
         </button>
@@ -68,13 +68,13 @@ export default function CartContents() {
           <p className="text-sm text-muted">
             {itemCount} {itemCount === 1 ? "item" : "items"}
           </p>
-          <p className="text-lg font-medium text-foreground">
+          <p className="text-lg font-bold text-foreground">
             {formatPrice(total)}
           </p>
         </div>
         <Link
           href="/checkout"
-          className="mt-6 block w-full bg-accent py-3 text-center text-sm font-medium text-background transition-colors hover:bg-accent-hover"
+          className="mt-6 block w-full bg-primary py-3 text-center text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
         >
           Proceed to Checkout
         </Link>

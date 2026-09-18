@@ -61,10 +61,10 @@ export default function ProductInfo({ product }: { product: Product }) {
         <p className="text-xs uppercase tracking-wider text-muted">
           {product.category}
         </p>
-        <h1 className="mt-2 text-2xl font-light tracking-tight text-foreground md:text-3xl">
+        <h1 className="mt-2 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
           {product.name}
         </h1>
-        <p className="mt-3 text-lg text-foreground">
+        <p className="mt-3 text-lg font-medium text-primary">
           {formatPrice(product.price)}
         </p>
         <p className="mt-6 leading-relaxed text-muted">
@@ -83,10 +83,10 @@ export default function ProductInfo({ product }: { product: Product }) {
             </div>
             <button
               onClick={handleAddToCart}
-              className={`mt-4 w-full px-8 py-3 text-sm font-medium transition-colors ${
+              className={`mt-4 w-full px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all ${
                 added
                   ? "bg-green-600 text-white"
-                  : "bg-accent text-background hover:bg-accent-hover"
+                  : "bg-primary text-tertiary hover:bg-accent-hover"
               }`}
             >
               {added ? "✓ Added to Cart" : "Add to Cart"}

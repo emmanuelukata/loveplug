@@ -21,7 +21,7 @@ export default function OrderLookupPage() {
   return (
     <Container className="py-24 md:py-32">
       <div className="mx-auto max-w-md text-center">
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Track Your Order
         </h1>
         <p className="mt-4 text-muted leading-relaxed">
@@ -46,7 +46,7 @@ export default function OrderLookupPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-accent py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
+            className="w-full bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
           >
             Track Order
           </button>

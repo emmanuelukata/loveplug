@@ -49,7 +49,7 @@ export default function OrderConfirmation({ order }: { order: Order }) {
   return (
     <Container className="py-12 md:py-20">
       <div className="mx-auto max-w-xl text-center">
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Order Confirmed
         </h1>
         <p className="mt-4 text-muted leading-relaxed">
@@ -165,7 +165,7 @@ export default function OrderConfirmation({ order }: { order: Order }) {
               <button
                 onClick={handlePaymentConfirm}
                 disabled={submitting}
-                className="mt-4 w-full bg-accent py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover disabled:opacity-50"
+                className="mt-4 w-full bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover disabled:opacity-50"
               >
                 {submitting ? "Submitting..." : "I've Made Payment"}
               </button>

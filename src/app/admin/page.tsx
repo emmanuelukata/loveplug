@@ -73,7 +73,7 @@ export default function AdminPage() {
     <AdminGuard>
     <Container className="py-12 md:py-20">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-light tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Orders
         </h1>
         <button

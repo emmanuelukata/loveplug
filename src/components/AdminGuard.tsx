@@ -25,7 +25,7 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
 
   return (
     <Container className="py-24 text-center">
-      <h1 className="text-3xl font-light tracking-tight text-foreground">
+      <h1 className="text-3xl font-bold tracking-tight text-foreground">
         Admin Access
       </h1>
       <p className="mt-4 text-muted">Enter the admin password to continue.</p>
@@ -40,7 +40,7 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
         {error && <p className="text-xs text-red-500">{error}</p>}
         <button
           type="submit"
-          className="w-full bg-accent py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
+          className="w-full bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-tertiary transition-all hover:bg-accent-hover"
         >
           Enter
         </button>
