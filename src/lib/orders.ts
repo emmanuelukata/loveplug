@@ -1,5 +1,4 @@
-import { readFile, writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { supabase } from "./supabase";
 
 export type OrderStatus =
   | "PENDING_PAYMENT"
@@ -37,28 +36,59 @@ export interface Order {
   updatedAt: string;
 }
 
-const ORDERS_DIR = join(process.cwd(), "data", "orders");
-
-function orderPath(reference: string): string {
-  // Sanitize reference to prevent path traversal
-  const safe = reference.replace(/[^a-zA-Z0-9-]/g, "");
-  return join(ORDERS_DIR, `${safe}.json`);
-}
-
 export async function saveOrder(order: Order): Promise<void> {
-  await mkdir(ORDERS_DIR, { recursive: true });
-  const filePath = orderPath(order.reference);
-  await writeFile(filePath, JSON.stringify(order, null, 2), "utf-8");
+  const { error } = await supabase.from("orders").upsert({
+    reference: order.reference,
+    status: order.status,
+    items: order.items,
+    subtotal: order.subtotal,
+    full_name: order.customer.fullName,
+    email: order.customer.email,
+    phone: order.customer.phone,
+    address: order.customer.address,
+    city: order.customer.city,
+    state: order.customer.state,
+    delivery_instructions: order.customer.deliveryInstructions,
+    payment_receipt_url: order.paymentReceiptUrl,
+    created_at: order.createdAt,
+    updated_at: order.updatedAt,
+  });
+
+  if (error) {
+    console.error("Error saving order:", error);
+    throw new Error("Failed to save order");
+  }
 }
 
 export async function getOrder(reference: string): Promise<Order | null> {
-  try {
-    const filePath = orderPath(reference);
-    const data = await readFile(filePath, "utf-8");
-    return JSON.parse(data) as Order;
-  } catch {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*")
+    .eq("reference", reference)
+    .single();
+
+  if (error || !data) {
     return null;
   }
+
+  return {
+    reference: data.reference,
+    status: data.status,
+    items: data.items,
+    subtotal: data.subtotal,
+    customer: {
+      fullName: data.full_name,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      city: data.city,
+      state: data.state,
+      deliveryInstructions: data.delivery_instructions,
+    },
+    paymentReceiptUrl: data.payment_receipt_url,
+    createdAt: data.created_at,
+    updatedAt: data.updated_at,
+  };
 }
 
 export function generateOrderReference(): string {

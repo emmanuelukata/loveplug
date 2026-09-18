@@ -1,10 +1,8 @@
 "use server";
 
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+import { supabase } from "@/lib/supabase";
 import { getOrder, saveOrder } from "@/lib/orders";
 
-const RECEIPTS_DIR = join(process.cwd(), "data", "receipts");
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED_TYPES = [
   "image/jpeg",
@@ -16,10 +14,6 @@ const ALLOWED_TYPES = [
 interface UploadResult {
   success: boolean;
   error?: string;
-}
-
-function sanitizeFilename(filename: string): string {
-  return filename.replace(/[^a-zA-Z0-9.-]/g, "_").substring(0, 100);
 }
 
 export async function uploadReceipt(
@@ -54,18 +48,28 @@ export async function uploadReceipt(
     };
   }
 
-  // 5. Create receipt filename
+  // 5. Upload to Supabase Storage
   const ext = file.name.split(".").pop() || "jpg";
-  const receiptFilename = `${reference}_${Date.now()}.${sanitizeFilename(ext)}`;
+  const filePath = `receipts/${reference}_${Date.now()}.${ext}`;
 
-  // 6. Save file
-  await mkdir(RECEIPTS_DIR, { recursive: true });
-  const filePath = join(RECEIPTS_DIR, receiptFilename);
-  const bytes = await file.arrayBuffer();
-  await writeFile(filePath, Buffer.from(bytes));
+  const { error: uploadError } = await supabase.storage
+    .from("receipts")
+    .upload(filePath, file, {
+      contentType: file.type,
+    });
+
+  if (uploadError) {
+    console.error("Upload error:", uploadError);
+    return { success: false, error: "Failed to upload file" };
+  }
+
+  // 6. Get public URL
+  const { data: urlData } = supabase.storage
+    .from("receipts")
+    .getPublicUrl(filePath);
 
   // 7. Update order
-  order.paymentReceiptUrl = receiptFilename;
+  order.paymentReceiptUrl = urlData.publicUrl;
   order.status = "PAYMENT_SUBMITTED";
   order.updatedAt = new Date().toISOString();
   await saveOrder(order);
