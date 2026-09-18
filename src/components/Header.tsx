@@ -13,6 +13,9 @@ export default function Header() {
           <Link href="/products" className="transition-colors hover:text-foreground">
             Shop
           </Link>
+          <Link href="/order/lookup" className="transition-colors hover:text-foreground">
+            Track Order
+          </Link>
           <CartIcon />
         </nav>
       </Container>

@@ -1,7 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Order } from "@/lib/orders";
 import Container from "@/components/Container";
-import ReceiptUpload from "@/components/ReceiptUpload";
+import { confirmPayment } from "@/app/actions/payment";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("en-NG", {
@@ -11,7 +14,38 @@ function formatPrice(price: number): string {
   }).format(price);
 }
 
+const STATUS_MAP: Record<string, { label: string; color: string }> = {
+  PENDING_PAYMENT: { label: "Awaiting Payment", color: "text-yellow-600" },
+  PAYMENT_SUBMITTED: { label: "Payment Under Review", color: "text-blue-600" },
+  PAYMENT_CONFIRMED: { label: "Payment Confirmed", color: "text-green-600" },
+  PROCESSING: { label: "Processing", color: "text-blue-600" },
+  SHIPPED: { label: "Shipped", color: "text-purple-600" },
+  COMPLETED: { label: "Completed", color: "text-green-600" },
+  CANCELLED: { label: "Cancelled", color: "text-red-600" },
+};
+
 export default function OrderConfirmation({ order }: { order: Order }) {
+  const [paymentSubmitted, setPaymentSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const statusInfo = STATUS_MAP[order.status] || {
+    label: order.status,
+    color: "text-muted",
+  };
+
+  const handlePaymentConfirm = async () => {
+    setSubmitting(true);
+    setError("");
+    const result = await confirmPayment(order.reference);
+    if (result.success) {
+      setPaymentSubmitted(true);
+    } else {
+      setError(result.error || "Something went wrong");
+    }
+    setSubmitting(false);
+  };
+
   return (
     <Container className="py-12 md:py-20">
       <div className="mx-auto max-w-xl text-center">
@@ -20,6 +54,9 @@ export default function OrderConfirmation({ order }: { order: Order }) {
         </h1>
         <p className="mt-4 text-muted leading-relaxed">
           Thank you, {order.customer.fullName}. Your order has been received.
+        </p>
+        <p className={`mt-2 text-sm font-medium ${statusInfo.color}`}>
+          {statusInfo.label}
         </p>
       </div>
 
@@ -65,8 +102,7 @@ export default function OrderConfirmation({ order }: { order: Order }) {
               <strong className="text-foreground">
                 {formatPrice(order.subtotal)}
               </strong>{" "}
-              to the account details below. After making the transfer, upload
-              your payment receipt on our website for verification.
+              to the account details below.
             </p>
             <div className="mt-4 rounded border border-border p-4">
               <p className="text-sm text-muted">
@@ -93,28 +129,52 @@ export default function OrderConfirmation({ order }: { order: Order }) {
           <div className="mt-6 border-t border-border pt-6">
             <p className="text-sm font-medium text-foreground">Next Steps</p>
             <ol className="mt-2 space-y-2 text-sm text-muted">
-              <li>1. Make the bank transfer</li>
-              <li>2. Upload your payment receipt</li>
+              <li>1. Make the bank transfer using the details above</li>
+              <li>2. Come back and click &quot;I&apos;ve Made Payment&quot;</li>
               <li>3. We&apos;ll verify your payment within 24 hours</li>
               <li>4. Your order will be processed and shipped</li>
             </ol>
           </div>
 
-          {order.paymentReceiptUrl ? (
+          {order.status !== "PENDING_PAYMENT" || paymentSubmitted ? (
             <div className="mt-6 border-t border-border pt-6">
               <p className="text-sm font-medium text-foreground">
-                Payment Receipt
+                Payment Status
               </p>
               <p className="mt-2 text-sm text-green-600">
-                Receipt uploaded. We&apos;ll verify your payment shortly.
+                Payment notification received. We&apos;re verifying your payment.
               </p>
             </div>
-          ) : order.status === "PENDING_PAYMENT" ? (
-            <ReceiptUpload reference={order.reference} />
-          ) : null}
+          ) : (
+            <div className="mt-6 border-t border-border pt-6">
+              <p className="text-sm font-medium text-foreground">
+                Have you made the payment?
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                Click the button below after completing your bank transfer.
+              </p>
+              <button
+                onClick={handlePaymentConfirm}
+                disabled={submitting}
+                className="mt-4 w-full bg-accent py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover disabled:opacity-50"
+              >
+                {submitting ? "Submitting..." : "I've Made Payment"}
+              </button>
+              {error && (
+                <p className="mt-2 text-xs text-red-500">{error}</p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="mt-8 text-center">
+          <Link
+            href="/order/lookup"
+            className="text-sm text-muted transition-colors hover:text-foreground"
+          >
+            Track Another Order
+          </Link>
+          <span className="mx-3 text-muted">·</span>
           <Link
             href="/products"
             className="text-sm text-muted transition-colors hover:text-foreground"

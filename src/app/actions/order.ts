@@ -7,6 +7,7 @@ import {
   type Order,
   type OrderItem,
 } from "@/lib/orders";
+import { sendOrderConfirmation } from "@/lib/email";
 
 interface CheckoutInput {
   fullName: string;
@@ -130,6 +131,14 @@ export async function createOrder(input: CheckoutInput): Promise<OrderResult> {
   // 7. Save order
   await saveOrder(order);
 
-  // 8. Return confirmation
+  // 8. Send confirmation email
+  await sendOrderConfirmation(
+    order.customer.email,
+    order.reference,
+    order.customer.fullName,
+    order.subtotal,
+  );
+
+  // 9. Return confirmation
   return { success: true, reference };
 }
