@@ -9,7 +9,7 @@ export const products: Product[] = [
       "Suction and pressure toy designed for intense, targeted stimulation. Body-safe silicone with multiple intensity levels.",
     price: 15000,
     category: "Air-suction/Pressure Toys",
-    image: "/products/Air-sucction.jpg",
+    image: "/products/air-suction.jpg",
     availability: "AVAILABLE",
   },
   {
@@ -31,7 +31,7 @@ export const products: Product[] = [
       "Ergonomically curved to hit the G-spot with ease. Powerful vibrations with multiple speed settings.",
     price: 18000,
     category: "G-spot Vibrators",
-    image: "/products/G-spot vibrator.jpg",
+    image: "/products/g-spot-vibrator.jpg",
     availability: "AVAILABLE",
   },
   {
@@ -42,7 +42,7 @@ export const products: Product[] = [
       "Upgraded G-spot vibrator with deeper vibrations and a smoother tip. Whisper-quiet and fully waterproof.",
     price: 20000,
     category: "G-spot Vibrators",
-    image: "/products/G-spot vibrator 2.jpg",
+    image: "/products/g-spot-vibrator-2.jpg",
     availability: "AVAILABLE",
   },
   {
@@ -53,7 +53,7 @@ export const products: Product[] = [
       "Premium G-spot vibrator with rotating beads and thrusting action. Multi-function for customizable pleasure.",
     price: 25000,
     category: "G-spot Vibrators",
-    image: "/products/G-spot Vibrator 3.jpg",
+    image: "/products/g-spot-vibrator-3.jpg",
     availability: "AVAILABLE",
   },
   {
@@ -64,7 +64,7 @@ export const products: Product[] = [
       "Designed for shared pleasure. Worn during intimacy to enhance sensations for both partners.",
     price: 22000,
     category: "Couple Toys",
-    image: "/products/Couple Toys.jpg",
+    image: "/products/couple-toys.jpg",
     availability: "AVAILABLE",
   },
 ];
