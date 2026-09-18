@@ -163,6 +163,14 @@ export default function CheckoutForm() {
         Checkout
       </h1>
 
+      <div className="mt-6 flex items-center gap-2 text-sm">
+        <span className="text-foreground font-medium">Cart</span>
+        <span className="text-muted">→</span>
+        <span className="text-foreground font-medium">Checkout</span>
+        <span className="text-muted">→</span>
+        <span className="text-muted">Confirmation</span>
+      </div>
+
       <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-2">
         {/* Order Summary */}
         <div>

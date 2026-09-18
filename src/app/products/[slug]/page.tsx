@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import ProductInfo from "@/components/ProductInfo";
 import { products } from "@/lib/products";
 
@@ -33,6 +34,10 @@ export default async function ProductDetailPage({
 
   return (
     <Container className="py-8 md:py-16">
+      <Breadcrumbs items={[
+        { label: "Shop", href: "/products" },
+        { label: product.name }
+      ]} />
       <ProductInfo product={product} />
     </Container>
   );

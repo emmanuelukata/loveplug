@@ -66,9 +66,18 @@ export default function OrderConfirmation({ order }: { order: Order }) {
             <p className="text-xs uppercase tracking-wider text-muted">
               Order Reference
             </p>
-            <p className="mt-1 text-lg font-medium tracking-wider text-foreground">
-              {order.reference}
-            </p>
+            <div className="mt-1 flex items-center justify-center gap-2">
+              <p className="text-lg font-medium tracking-wider text-foreground">
+                {order.reference}
+              </p>
+              <button
+                onClick={() => navigator.clipboard.writeText(order.reference)}
+                className="text-muted transition-colors hover:text-foreground"
+                title="Copy reference"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              </button>
+            </div>
           </div>
 
           <div className="mt-6 border-t border-border pt-6">

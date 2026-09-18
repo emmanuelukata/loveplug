@@ -19,6 +19,9 @@ export default function CartContents() {
   if (items.length === 0) {
     return (
       <Container className="py-24 text-center">
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-muted"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
         <h1 className="text-3xl font-light tracking-tight text-foreground">
           Your Cart
         </h1>
@@ -27,7 +30,7 @@ export default function CartContents() {
           href="/products"
           className="mt-8 inline-block bg-accent px-8 py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
         >
-          Continue Shopping
+          Start Shopping
         </Link>
       </Container>
     );

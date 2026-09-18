@@ -83,9 +83,13 @@ export default function ProductInfo({ product }: { product: Product }) {
             </div>
             <button
               onClick={handleAddToCart}
-              className="mt-4 w-full bg-accent px-8 py-3 text-sm font-medium text-background transition-colors hover:bg-accent-hover"
+              className={`mt-4 w-full px-8 py-3 text-sm font-medium transition-colors ${
+                added
+                  ? "bg-green-600 text-white"
+                  : "bg-accent text-background hover:bg-accent-hover"
+              }`}
             >
-              {added ? "Added to Cart" : "Add to Cart"}
+              {added ? "✓ Added to Cart" : "Add to Cart"}
             </button>
           </div>
         )}
