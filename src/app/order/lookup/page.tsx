@@ -46,7 +46,7 @@ export default function OrderLookupPage() {
           </div>
           <button
             type="submit"
-            className="w-full py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
+            className="w-full py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
             style={{ backgroundColor: "#BF00FF" }}
           >
             Track Order

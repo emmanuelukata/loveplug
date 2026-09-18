@@ -31,13 +31,14 @@ export default function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               href="/products"
-              className="inline-block bg-[#BF00FF] px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:bg-[#9900CC] hover:scale-105"
+              className="inline-block px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:scale-105"
+              style={{ backgroundColor: "#BF00FF" }}
             >
               Shop Now
             </Link>
             <Link
               href="#featured"
-              className="inline-block border border-white/30 px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:border-white hover:bg-white/10"
+              className="inline-block border-2 border-white px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-black"
             >
               View Collection
             </Link>

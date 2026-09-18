@@ -188,16 +188,16 @@ export default function CTA() {
           <p className="mt-4 leading-relaxed" style={{ color: "#555555" }}>
             Sign up for updates, promotions, and early access to new products.
           </p>
-          <form className="mt-8 flex gap-2" onSubmit={(e) => e.preventDefault()}>
+          <form className="mt-8 flex flex-col gap-3 sm:flex-row" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 text-sm outline-none"
+              className="flex-1 px-5 py-4 text-sm outline-none"
               style={{ border: "1px solid #e0e0e0", color: "#111111", backgroundColor: "#ffffff" }}
             />
             <button
               type="submit"
-              className="px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:opacity-90"
+              className="px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:opacity-90"
               style={{ backgroundColor: "#BF00FF" }}
             >
               Subscribe
