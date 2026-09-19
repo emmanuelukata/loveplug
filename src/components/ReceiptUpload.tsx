@@ -30,27 +30,29 @@ export default function ReceiptUpload({ reference }: { reference: string }) {
       setMessage(result.error || "Upload failed. Please try again.");
     }
 
-    // Reset file input
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
   };
 
   return (
-    <div className="mt-6 border-t border-border pt-6">
-      <p className="text-sm font-medium text-foreground">
+    <div className="mt-6 pt-6" style={{ borderTop: "1px solid #3d1e2c" }}>
+      <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>
         Upload Payment Receipt
       </p>
-      <p className="mt-1 text-sm text-muted">
+      <p className="mt-1 text-sm" style={{ color: "#8c7180" }}>
         After making the bank transfer, upload your payment receipt here.
       </p>
 
       <div className="mt-4">
         <label
           htmlFor="receipt"
-          className="block cursor-pointer border border-dashed border-border px-4 py-6 text-center transition-colors hover:border-foreground"
+          className="block cursor-pointer px-4 py-6 text-center transition-colors"
+          style={{ border: "2px dashed #3d1e2c" }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#3d1e2c")}
         >
-          <span className="text-sm text-muted">
+          <span className="text-sm" style={{ color: "#8c7180" }}>
             {status === "uploading"
               ? "Uploading..."
               : "Click to select receipt (JPG, PNG, or PDF, max 5MB)"}
@@ -69,13 +71,15 @@ export default function ReceiptUpload({ reference }: { reference: string }) {
 
       {message && (
         <p
-          className={`mt-3 text-sm ${
-            status === "success"
-              ? "text-green-600"
-              : status === "error"
-                ? "text-red-500"
-                : "text-muted"
-          }`}
+          className="mt-3 text-sm"
+          style={{
+            color:
+              status === "success"
+                ? "#22c55e"
+                : status === "error"
+                  ? "#ef4444"
+                  : "#8c7180",
+          }}
         >
           {message}
         </p>

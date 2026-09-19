@@ -92,7 +92,6 @@ export default function CheckoutForm() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -136,14 +135,14 @@ export default function CheckoutForm() {
   if (items.length === 0) {
     return (
       <Container className="py-24 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
           Checkout
         </h1>
-        <p className="mt-4 text-muted">Your cart is empty</p>
+        <p className="mt-4" style={{ color: "#8c7180" }}>Your cart is empty</p>
         <Link
           href="/products"
-          className="mt-8 inline-block px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
-          style={{ backgroundColor: "#BF00FF" }}
+          className="mt-8 inline-block px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
         >
           Continue Shopping
         </Link>
@@ -151,51 +150,57 @@ export default function CheckoutForm() {
     );
   }
 
+  const inputStyle = { backgroundColor: "transparent", color: "#f8eef3", borderColor: "#3d1e2c" };
+  const inputFocusStyle = { borderColor: "#f8eef3" };
+
   return (
     <Container className="py-12 md:py-20">
       <Link
         href="/cart"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+        className="mb-6 inline-flex items-center gap-1 text-sm transition-colors"
+        style={{ color: "#8c7180" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         Back to Cart
       </Link>
-      <h1 className="text-3xl font-bold tracking-tight text-foreground">
+      <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
         Checkout
       </h1>
 
       <div className="mt-6 flex items-center gap-2 text-sm">
-        <span className="text-foreground font-medium">Cart</span>
-        <span className="text-muted">→</span>
-        <span className="text-foreground font-medium">Checkout</span>
-        <span className="text-muted">→</span>
-        <span className="text-muted">Confirmation</span>
+        <span className="font-medium" style={{ color: "#f8eef3" }}>Cart</span>
+        <span style={{ color: "#8c7180" }}>→</span>
+        <span className="font-medium" style={{ color: "#f8eef3" }}>Checkout</span>
+        <span style={{ color: "#8c7180" }}>→</span>
+        <span style={{ color: "#8c7180" }}>Confirmation</span>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-2">
         {/* Order Summary */}
         <div>
-          <h2 className="text-lg font-medium text-foreground">
+          <h2 className="text-lg font-medium" style={{ color: "#f8eef3" }}>
             Order Summary
           </h2>
-          <div className="mt-4 divide-y divide-border">
+          <div className="mt-4">
             {items.map((item) => (
-              <div key={item.productId} className="flex justify-between py-3">
+              <div key={item.productId} className="flex justify-between py-3" style={{ borderBottom: "1px solid #3d1e2c" }}>
                 <div>
-                  <p className="text-sm text-foreground">{item.name}</p>
-                  <p className="text-xs text-muted">
+                  <p className="text-sm" style={{ color: "#f8eef3" }}>{item.name}</p>
+                  <p className="text-xs" style={{ color: "#8c7180" }}>
                     Qty: {item.quantity} × {formatPrice(item.price)}
                   </p>
                 </div>
-                <p className="text-sm text-foreground">
+                <p className="text-sm" style={{ color: "#f8eef3" }}>
                   {formatPrice(item.price * item.quantity)}
                 </p>
               </div>
             ))}
           </div>
-          <div className="mt-4 flex justify-between border-t border-border pt-4">
-            <p className="text-sm text-muted">Total</p>
-            <p className="text-lg font-medium text-foreground">
+          <div className="mt-4 flex justify-between pt-4" style={{ borderTop: "1px solid #3d1e2c" }}>
+            <p className="text-sm" style={{ color: "#8c7180" }}>Total</p>
+            <p className="text-lg font-medium" style={{ color: "#f8eef3" }}>
               {formatPrice(total)}
             </p>
           </div>
@@ -203,14 +208,15 @@ export default function CheckoutForm() {
 
         {/* Delivery Form */}
         <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-          <h2 className="text-lg font-medium text-foreground">
+          <h2 className="text-lg font-medium" style={{ color: "#f8eef3" }}>
             Delivery Information
           </h2>
 
           <div>
             <label
               htmlFor="fullName"
-              className="block text-sm text-muted"
+              className="block text-sm"
+              style={{ color: "#8c7180" }}
             >
               Full Name
             </label>
@@ -220,11 +226,10 @@ export default function CheckoutForm() {
               type="text"
               value={formData.fullName}
               onChange={handleChange}
-              className={`mt-1 block w-full border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors ${
-                errors.fullName
-                  ? "border-red-500"
-                  : "border-border focus:border-foreground"
-              }`}
+              className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+              style={{ ...inputStyle, border: `1px solid ${errors.fullName ? "#ef4444" : "#3d1e2c" }` }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+              onBlur={(e) => (e.currentTarget.style.borderColor = errors.fullName ? "#ef4444" : "#3d1e2c")}
             />
             {errors.fullName && (
               <p className="mt-1 text-xs text-red-500">{errors.fullName}</p>
@@ -232,7 +237,7 @@ export default function CheckoutForm() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm text-muted">
+            <label htmlFor="email" className="block text-sm" style={{ color: "#8c7180" }}>
               Email
             </label>
             <input
@@ -241,11 +246,10 @@ export default function CheckoutForm() {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              className={`mt-1 block w-full border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-border focus:border-foreground"
-              }`}
+              className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+              style={{ ...inputStyle, border: `1px solid ${errors.email ? "#ef4444" : "#3d1e2c" }` }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+              onBlur={(e) => (e.currentTarget.style.borderColor = errors.email ? "#ef4444" : "#3d1e2c")}
             />
             {errors.email && (
               <p className="mt-1 text-xs text-red-500">{errors.email}</p>
@@ -253,7 +257,7 @@ export default function CheckoutForm() {
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm text-muted">
+            <label htmlFor="phone" className="block text-sm" style={{ color: "#8c7180" }}>
               Phone Number
             </label>
             <input
@@ -262,11 +266,10 @@ export default function CheckoutForm() {
               type="tel"
               value={formData.phone}
               onChange={handleChange}
-              className={`mt-1 block w-full border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors ${
-                errors.phone
-                  ? "border-red-500"
-                  : "border-border focus:border-foreground"
-              }`}
+              className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+              style={{ ...inputStyle, border: `1px solid ${errors.phone ? "#ef4444" : "#3d1e2c" }` }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+              onBlur={(e) => (e.currentTarget.style.borderColor = errors.phone ? "#ef4444" : "#3d1e2c")}
             />
             {errors.phone && (
               <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
@@ -274,7 +277,7 @@ export default function CheckoutForm() {
           </div>
 
           <div>
-            <label htmlFor="address" className="block text-sm text-muted">
+            <label htmlFor="address" className="block text-sm" style={{ color: "#8c7180" }}>
               Delivery Address
             </label>
             <input
@@ -283,11 +286,10 @@ export default function CheckoutForm() {
               type="text"
               value={formData.address}
               onChange={handleChange}
-              className={`mt-1 block w-full border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors ${
-                errors.address
-                  ? "border-red-500"
-                  : "border-border focus:border-foreground"
-              }`}
+              className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+              style={{ ...inputStyle, border: `1px solid ${errors.address ? "#ef4444" : "#3d1e2c" }` }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+              onBlur={(e) => (e.currentTarget.style.borderColor = errors.address ? "#ef4444" : "#3d1e2c")}
             />
             {errors.address && (
               <p className="mt-1 text-xs text-red-500">{errors.address}</p>
@@ -296,7 +298,7 @@ export default function CheckoutForm() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="city" className="block text-sm text-muted">
+              <label htmlFor="city" className="block text-sm" style={{ color: "#8c7180" }}>
                 City
               </label>
               <input
@@ -305,18 +307,17 @@ export default function CheckoutForm() {
                 type="text"
                 value={formData.city}
                 onChange={handleChange}
-                className={`mt-1 block w-full border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors ${
-                  errors.city
-                    ? "border-red-500"
-                    : "border-border focus:border-foreground"
-                }`}
+                className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+                style={{ ...inputStyle, border: `1px solid ${errors.city ? "#ef4444" : "#3d1e2c" }` }}
+                onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+                onBlur={(e) => (e.currentTarget.style.borderColor = errors.city ? "#ef4444" : "#3d1e2c")}
               />
               {errors.city && (
                 <p className="mt-1 text-xs text-red-500">{errors.city}</p>
               )}
             </div>
             <div>
-              <label htmlFor="state" className="block text-sm text-muted">
+              <label htmlFor="state" className="block text-sm" style={{ color: "#8c7180" }}>
                 State
               </label>
               <select
@@ -324,11 +325,10 @@ export default function CheckoutForm() {
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className={`mt-1 block w-full border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors ${
-                  errors.state
-                    ? "border-red-500"
-                    : "border-border focus:border-foreground"
-                }`}
+                className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+                style={{ ...inputStyle, border: `1px solid ${errors.state ? "#ef4444" : "#3d1e2c" }` }}
+                onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+                onBlur={(e) => (e.currentTarget.style.borderColor = errors.state ? "#ef4444" : "#3d1e2c")}
               >
                 <option value="">Select state</option>
                 {nigerianStates.map((state) => (
@@ -346,7 +346,8 @@ export default function CheckoutForm() {
           <div>
             <label
               htmlFor="deliveryInstructions"
-              className="block text-sm text-muted"
+              className="block text-sm"
+              style={{ color: "#8c7180" }}
             >
               Delivery Instructions (optional)
             </label>
@@ -356,7 +357,10 @@ export default function CheckoutForm() {
               value={formData.deliveryInstructions}
               onChange={handleChange}
               rows={3}
-              className="mt-1 block w-full border border-border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-foreground"
+              className="mt-1 block w-full px-4 py-3 text-sm outline-none transition-colors"
+              style={{ ...inputStyle, border: "1px solid #3d1e2c" }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+              onBlur={(e) => (e.currentTarget.style.borderColor = "#3d1e2c")}
             />
           </div>
 
@@ -367,8 +371,8 @@ export default function CheckoutForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90 disabled:opacity-50"
-            style={{ backgroundColor: "#BF00FF" }}
+            className="w-full py-3 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90 disabled:opacity-50"
+            style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
           >
             {isSubmitting ? "Placing Order..." : "Place Order"}
           </button>

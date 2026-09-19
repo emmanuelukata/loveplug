@@ -43,18 +43,18 @@ const values = [
 
 export default function ValueProps() {
   return (
-    <section className="border-y border-border bg-background py-16 md:py-20">
+    <section className="py-16 md:py-20" style={{ borderTop: "1px solid #3d1e2c", borderBottom: "1px solid #3d1e2c", backgroundColor: "#0d0509" }}>
       <Container>
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           {values.map((value) => (
             <div key={value.title} className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center text-primary">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center" style={{ color: "#ff2e88" }}>
                 {value.icon}
               </div>
-              <h3 className="mt-4 text-xs font-semibold uppercase tracking-wider text-foreground">
+              <h3 className="mt-4 text-xs font-semibold uppercase tracking-wider" style={{ color: "#f8eef3" }}>
                 {value.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-2 text-sm leading-relaxed" style={{ color: "#8c7180" }}>
                 {value.description}
               </p>
             </div>

@@ -9,10 +9,10 @@ export const metadata = {
 export default function ProductsPage() {
   return (
     <Container className="py-12 md:py-20">
-      <h1 className="text-3xl font-bold tracking-tight text-foreground">
+      <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
         Shop
       </h1>
-      <p className="mt-2 text-muted">
+      <p className="mt-2" style={{ color: "#8c7180" }}>
         Browse our curated collection
       </p>
       <div className="mt-8">

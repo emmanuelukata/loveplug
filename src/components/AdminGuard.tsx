@@ -25,23 +25,26 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
 
   return (
     <Container className="py-24 text-center">
-      <h1 className="text-3xl font-bold tracking-tight text-foreground">
+      <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
         Admin Access
       </h1>
-      <p className="mt-4 text-muted">Enter the admin password to continue.</p>
+      <p className="mt-4" style={{ color: "#8c7180" }}>Enter the admin password to continue.</p>
       <form onSubmit={handleSubmit} className="mt-8 mx-auto max-w-sm space-y-4">
         <input
           type="password"
           value={password}
           onChange={(e) => { setPassword(e.target.value); setError(""); }}
           placeholder="Password"
-          className="w-full border border-border bg-transparent px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-foreground"
+          className="w-full px-4 py-3 text-sm outline-none transition-colors"
+          style={{ border: "1px solid #3d1e2c", backgroundColor: "transparent", color: "#f8eef3" }}
+          onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+          onBlur={(e) => (e.currentTarget.style.borderColor = "#3d1e2c")}
         />
         {error && <p className="text-xs text-red-500">{error}</p>}
         <button
           type="submit"
-          className="w-full py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
-          style={{ backgroundColor: "#BF00FF" }}
+          className="w-full py-3 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
         >
           Enter
         </button>

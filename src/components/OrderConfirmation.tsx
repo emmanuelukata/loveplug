@@ -15,13 +15,13 @@ function formatPrice(price: number): string {
 }
 
 const STATUS_MAP: Record<string, { label: string; color: string }> = {
-  PENDING_PAYMENT: { label: "Awaiting Payment", color: "text-yellow-600" },
-  PAYMENT_SUBMITTED: { label: "Payment Under Review", color: "text-blue-600" },
-  PAYMENT_CONFIRMED: { label: "Payment Confirmed", color: "text-green-600" },
-  PROCESSING: { label: "Processing", color: "text-blue-600" },
-  SHIPPED: { label: "Shipped", color: "text-purple-600" },
-  COMPLETED: { label: "Completed", color: "text-green-600" },
-  CANCELLED: { label: "Cancelled", color: "text-red-600" },
+  PENDING_PAYMENT: { label: "Awaiting Payment", color: "#eab308" },
+  PAYMENT_SUBMITTED: { label: "Payment Under Review", color: "#3b82f6" },
+  PAYMENT_CONFIRMED: { label: "Payment Confirmed", color: "#22c55e" },
+  PROCESSING: { label: "Processing", color: "#3b82f6" },
+  SHIPPED: { label: "Shipped", color: "#a855f7" },
+  COMPLETED: { label: "Completed", color: "#22c55e" },
+  CANCELLED: { label: "Cancelled", color: "#ef4444" },
 };
 
 export default function OrderConfirmation({ order }: { order: Order }) {
@@ -31,7 +31,7 @@ export default function OrderConfirmation({ order }: { order: Order }) {
 
   const statusInfo = STATUS_MAP[order.status] || {
     label: order.status,
-    color: "text-muted",
+    color: "#8c7180",
   };
 
   const handlePaymentConfirm = async () => {
@@ -49,30 +49,33 @@ export default function OrderConfirmation({ order }: { order: Order }) {
   return (
     <Container className="py-12 md:py-20">
       <div className="mx-auto max-w-xl text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
           Order Confirmed
         </h1>
-        <p className="mt-4 text-muted leading-relaxed">
+        <p className="mt-4 leading-relaxed" style={{ color: "#8c7180" }}>
           Thank you, {order.customer.fullName}. Your order has been received.
         </p>
-        <p className={`mt-2 text-sm font-medium ${statusInfo.color}`}>
+        <p className="mt-2 text-sm font-medium" style={{ color: statusInfo.color }}>
           {statusInfo.label}
         </p>
       </div>
 
       <div className="mx-auto mt-12 max-w-xl">
-        <div className="border border-border p-6">
+        <div className="p-6" style={{ border: "1px solid #3d1e2c" }}>
           <div className="text-center">
-            <p className="text-xs uppercase tracking-wider text-muted">
+            <p className="text-xs uppercase tracking-wider" style={{ color: "#8c7180" }}>
               Order Reference
             </p>
             <div className="mt-1 flex items-center justify-center gap-2">
-              <p className="text-lg font-medium tracking-wider text-foreground">
+              <p className="text-lg font-medium tracking-wider" style={{ color: "#f8eef3" }}>
                 {order.reference}
               </p>
               <button
                 onClick={() => navigator.clipboard.writeText(order.reference)}
-                className="text-muted transition-colors hover:text-foreground"
+                className="transition-colors"
+                style={{ color: "#8c7180" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
                 title="Copy reference"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
@@ -80,64 +83,64 @@ export default function OrderConfirmation({ order }: { order: Order }) {
             </div>
           </div>
 
-          <div className="mt-6 border-t border-border pt-6">
-            <p className="text-sm font-medium text-foreground">Items</p>
-            <div className="mt-3 divide-y divide-border">
+          <div className="mt-6 pt-6" style={{ borderTop: "1px solid #3d1e2c" }}>
+            <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>Items</p>
+            <div className="mt-3">
               {order.items.map((item) => (
-                <div key={item.productId} className="flex justify-between py-2">
-                  <p className="text-sm text-muted">
+                <div key={item.productId} className="flex justify-between py-2" style={{ borderBottom: "1px solid #3d1e2c" }}>
+                  <p className="text-sm" style={{ color: "#8c7180" }}>
                     {item.name} × {item.quantity}
                   </p>
-                  <p className="text-sm text-foreground">
+                  <p className="text-sm" style={{ color: "#f8eef3" }}>
                     {formatPrice(item.price * item.quantity)}
                   </p>
                 </div>
               ))}
             </div>
-            <div className="mt-3 flex justify-between border-t border-border pt-3">
-              <p className="text-sm font-medium text-foreground">Total</p>
-              <p className="text-sm font-medium text-foreground">
+            <div className="mt-3 flex justify-between pt-3" style={{ borderTop: "1px solid #3d1e2c" }}>
+              <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>Total</p>
+              <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>
                 {formatPrice(order.subtotal)}
               </p>
             </div>
           </div>
 
-          <div className="mt-6 border-t border-border pt-6">
-            <p className="text-sm font-medium text-foreground">
+          <div className="mt-6 pt-6" style={{ borderTop: "1px solid #3d1e2c" }}>
+            <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>
               Payment Instructions
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: "#8c7180" }}>
               Please make a bank transfer of{" "}
-              <strong className="text-foreground">
+              <strong style={{ color: "#f8eef3" }}>
                 {formatPrice(order.subtotal)}
               </strong>{" "}
               to the account details below.
             </p>
-            <div className="mt-4 rounded border border-border p-4">
-              <p className="text-sm text-muted">
+            <div className="mt-4 rounded p-4" style={{ border: "1px solid #3d1e2c" }}>
+              <p className="text-sm" style={{ color: "#8c7180" }}>
                 Bank:{" "}
-                <span className="text-foreground">
+                <span style={{ color: "#f8eef3" }}>
                   {process.env.NEXT_PUBLIC_BANK_NAME || "[Bank Name]"}
                 </span>
               </p>
-              <p className="text-sm text-muted">
+              <p className="text-sm" style={{ color: "#8c7180" }}>
                 Account Name:{" "}
-                <span className="text-foreground">
+                <span style={{ color: "#f8eef3" }}>
                   {process.env.NEXT_PUBLIC_ACCOUNT_NAME || "[Account Name]"}
                 </span>
               </p>
-              <p className="text-sm text-muted">
+              <p className="text-sm" style={{ color: "#8c7180" }}>
                 Account Number:{" "}
-                <span className="text-foreground">
+                <span style={{ color: "#f8eef3" }}>
                   {process.env.NEXT_PUBLIC_ACCOUNT_NUMBER || "[Account Number]"}
                 </span>
               </p>
             </div>
           </div>
 
-          <div className="mt-6 border-t border-border pt-6">
-            <p className="text-sm font-medium text-foreground">Next Steps</p>
-            <ol className="mt-2 space-y-2 text-sm text-muted">
+          <div className="mt-6 pt-6" style={{ borderTop: "1px solid #3d1e2c" }}>
+            <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>Next Steps</p>
+            <ol className="mt-2 space-y-2 text-sm" style={{ color: "#8c7180" }}>
               <li>1. Make the bank transfer using the details above</li>
               <li>2. Come back and click &quot;I&apos;ve Made Payment&quot;</li>
               <li>3. We&apos;ll verify your payment within 24 hours</li>
@@ -146,27 +149,27 @@ export default function OrderConfirmation({ order }: { order: Order }) {
           </div>
 
           {order.status !== "PENDING_PAYMENT" || paymentSubmitted ? (
-            <div className="mt-6 border-t border-border pt-6">
-              <p className="text-sm font-medium text-foreground">
+            <div className="mt-6 pt-6" style={{ borderTop: "1px solid #3d1e2c" }}>
+              <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>
                 Payment Status
               </p>
-              <p className="mt-2 text-sm text-green-600">
+              <p className="mt-2 text-sm text-green-500">
                 Payment notification received. We&apos;re verifying your payment.
               </p>
             </div>
           ) : (
-            <div className="mt-6 border-t border-border pt-6">
-              <p className="text-sm font-medium text-foreground">
+            <div className="mt-6 pt-6" style={{ borderTop: "1px solid #3d1e2c" }}>
+              <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>
                 Have you made the payment?
               </p>
-              <p className="mt-2 text-sm text-muted">
+              <p className="mt-2 text-sm" style={{ color: "#8c7180" }}>
                 Click the button below after completing your bank transfer.
               </p>
               <button
                 onClick={handlePaymentConfirm}
                 disabled={submitting}
-                className="mt-4 w-full py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90 disabled:opacity-50"
-                style={{ backgroundColor: "#BF00FF" }}
+                className="mt-4 w-full py-3 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90 disabled:opacity-50"
+                style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
               >
                 {submitting ? "Submitting..." : "I've Made Payment"}
               </button>
@@ -180,14 +183,20 @@ export default function OrderConfirmation({ order }: { order: Order }) {
         <div className="mt-8 text-center">
           <Link
             href="/order/lookup"
-            className="text-sm text-muted transition-colors hover:text-foreground"
+            className="text-sm transition-colors"
+            style={{ color: "#8c7180" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
           >
             Track Another Order
           </Link>
-          <span className="mx-3 text-muted">·</span>
+          <span className="mx-3" style={{ color: "#8c7180" }}>·</span>
           <Link
             href="/products"
-            className="text-sm text-muted transition-colors hover:text-foreground"
+            className="text-sm transition-colors"
+            style={{ color: "#8c7180" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
           >
             Continue Shopping
           </Link>

@@ -20,7 +20,8 @@ export default function CartItem({ item }: { item: CartItemType }) {
     <div className="flex gap-4 py-4">
       <Link
         href={`/products/${item.slug}`}
-        className="relative h-24 w-24 flex-shrink-0 overflow-hidden bg-border"
+        className="relative h-24 w-24 flex-shrink-0 overflow-hidden"
+        style={{ backgroundColor: "#3d1e2c" }}
       >
         <Image
           src={item.image}
@@ -34,11 +35,12 @@ export default function CartItem({ item }: { item: CartItemType }) {
         <div>
           <Link
             href={`/products/${item.slug}`}
-            className="text-sm font-medium text-foreground hover:underline"
+            className="text-sm font-medium hover:underline"
+            style={{ color: "#f8eef3" }}
           >
             {item.name}
           </Link>
-          <p className="mt-0.5 text-sm text-muted">
+          <p className="mt-0.5 text-sm" style={{ color: "#8c7180" }}>
             {formatPrice(item.price)}
           </p>
         </div>
@@ -49,7 +51,10 @@ export default function CartItem({ item }: { item: CartItemType }) {
           />
           <button
             onClick={() => removeItem(item.productId)}
-            className="text-xs text-muted transition-colors hover:text-foreground"
+            className="text-xs transition-colors"
+            style={{ color: "#8c7180" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
           >
             Remove
           </button>

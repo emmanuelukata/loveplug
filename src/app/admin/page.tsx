@@ -34,14 +34,14 @@ const STATUS_OPTIONS: OrderStatus[] = [
   "CANCELLED",
 ];
 
-const STATUS_COLORS: Record<string, string> = {
-  PENDING_PAYMENT: "bg-yellow-100 text-yellow-800",
-  PAYMENT_SUBMITTED: "bg-blue-100 text-blue-800",
-  PAYMENT_CONFIRMED: "bg-green-100 text-green-800",
-  PROCESSING: "bg-indigo-100 text-indigo-800",
-  SHIPPED: "bg-purple-100 text-purple-800",
-  COMPLETED: "bg-green-100 text-green-800",
-  CANCELLED: "bg-red-100 text-red-800",
+const STATUS_COLORS: Record<string, { bg: string; text: string }> = {
+  PENDING_PAYMENT: { bg: "#422006", text: "#facc15" },
+  PAYMENT_SUBMITTED: { bg: "#172554", text: "#60a5fa" },
+  PAYMENT_CONFIRMED: { bg: "#052e16", text: "#4ade80" },
+  PROCESSING: { bg: "#1e1b4b", text: "#818cf8" },
+  SHIPPED: { bg: "#3b0764", text: "#c084fc" },
+  COMPLETED: { bg: "#052e16", text: "#4ade80" },
+  CANCELLED: { bg: "#450a0a", text: "#f87171" },
 };
 
 export default function AdminPage() {
@@ -73,43 +73,48 @@ export default function AdminPage() {
     <AdminGuard>
     <Container className="py-12 md:py-20">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
           Orders
         </h1>
         <button
           onClick={loadOrders}
-          className="text-sm text-muted transition-colors hover:text-foreground"
+          className="text-sm transition-colors"
+          style={{ color: "#8c7180" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
         >
           Refresh
         </button>
       </div>
 
       {loading ? (
-        <p className="mt-8 text-muted">Loading orders...</p>
+        <p className="mt-8" style={{ color: "#8c7180" }}>Loading orders...</p>
       ) : orders.length === 0 ? (
-        <p className="mt-8 text-muted">No orders yet.</p>
+        <p className="mt-8" style={{ color: "#8c7180" }}>No orders yet.</p>
       ) : (
         <div className="mt-8 space-y-4">
-          {orders.map((order) => (
-            <div key={order.reference} className="border border-border p-6">
+          {orders.map((order) => {
+            const sc = STATUS_COLORS[order.status] || { bg: "#22101a", text: "#8c7180" };
+            return (
+            <div key={order.reference} className="p-6" style={{ border: "1px solid #3d1e2c" }}>
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="font-medium tracking-wider text-foreground">
+                  <p className="font-medium tracking-wider" style={{ color: "#f8eef3" }}>
                     {order.reference}
                   </p>
-                  <p className="text-sm text-muted">
+                  <p className="text-sm" style={{ color: "#8c7180" }}>
                     {order.customer.fullName} · {order.customer.email}
                   </p>
-                  <p className="text-sm text-muted">
+                  <p className="text-sm" style={{ color: "#8c7180" }}>
                     {order.customer.phone} · {order.customer.city},{" "}
                     {order.customer.state}
                   </p>
-                  <p className="text-xs text-muted">
+                  <p className="text-xs" style={{ color: "#8c7180" }}>
                     {formatDate(order.createdAt)}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <p className="text-lg font-medium text-foreground">
+                  <p className="text-lg font-medium" style={{ color: "#f8eef3" }}>
                     {formatPrice(order.subtotal)}
                   </p>
                   <select
@@ -121,9 +126,8 @@ export default function AdminPage() {
                       )
                     }
                     disabled={updating === order.reference}
-                    className={`rounded-full px-3 py-1 text-xs font-medium ${
-                      STATUS_COLORS[order.status] || "bg-gray-100 text-gray-800"
-                    } border-0 outline-none`}
+                    className="rounded-full px-3 py-1 text-xs font-medium border-0 outline-none"
+                    style={{ backgroundColor: sc.bg, color: sc.text }}
                   >
                     {STATUS_OPTIONS.map((status) => (
                       <option key={status} value={status}>
@@ -134,11 +138,11 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <div className="mt-4 border-t border-border pt-4">
-                <p className="text-sm font-medium text-foreground">Items</p>
+              <div className="mt-4 pt-4" style={{ borderTop: "1px solid #3d1e2c" }}>
+                <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>Items</p>
                 <div className="mt-2">
                   {order.items.map((item) => (
-                    <p key={item.productId} className="text-sm text-muted">
+                    <p key={item.productId} className="text-sm" style={{ color: "#8c7180" }}>
                       {item.name} × {item.quantity} —{" "}
                       {formatPrice(item.price * item.quantity)}
                     </p>
@@ -146,22 +150,23 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <div className="mt-4 border-t border-border pt-4">
-                <p className="text-sm font-medium text-foreground">
+              <div className="mt-4 pt-4" style={{ borderTop: "1px solid #3d1e2c" }}>
+                <p className="text-sm font-medium" style={{ color: "#f8eef3" }}>
                   Delivery Address
                 </p>
-                <p className="text-sm text-muted">
+                <p className="text-sm" style={{ color: "#8c7180" }}>
                   {order.customer.address}, {order.customer.city},{" "}
                   {order.customer.state}
                 </p>
                 {order.customer.deliveryInstructions && (
-                  <p className="mt-1 text-xs text-muted">
+                  <p className="mt-1 text-xs" style={{ color: "#8c7180" }}>
                     Note: {order.customer.deliveryInstructions}
                   </p>
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </Container>

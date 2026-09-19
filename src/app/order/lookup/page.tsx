@@ -21,10 +21,10 @@ export default function OrderLookupPage() {
   return (
     <Container className="py-24 md:py-32">
       <div className="mx-auto max-w-md text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-3xl font-bold tracking-tight" style={{ color: "#f8eef3" }}>
           Track Your Order
         </h1>
-        <p className="mt-4 text-muted leading-relaxed">
+        <p className="mt-4 leading-relaxed" style={{ color: "#8c7180" }}>
           Enter your order reference to check your order status.
         </p>
 
@@ -38,7 +38,10 @@ export default function OrderLookupPage() {
                 setError("");
               }}
               placeholder="e.g. ORD-M1K5X3-AB2F"
-              className="w-full border border-border bg-transparent px-4 py-3 text-center text-sm tracking-wider text-foreground outline-none transition-colors placeholder:text-muted/50 focus:border-foreground"
+              className="w-full px-4 py-3 text-center text-sm tracking-wider outline-none transition-colors"
+              style={{ border: "1px solid #3d1e2c", backgroundColor: "transparent", color: "#f8eef3" }}
+              onFocus={(e) => (e.currentTarget.style.borderColor = "#f8eef3")}
+              onBlur={(e) => (e.currentTarget.style.borderColor = "#3d1e2c")}
             />
             {error && (
               <p className="mt-2 text-xs text-red-500">{error}</p>
@@ -46,8 +49,8 @@ export default function OrderLookupPage() {
           </div>
           <button
             type="submit"
-            className="w-full py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90"
-            style={{ backgroundColor: "#BF00FF" }}
+            className="w-full py-4 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+            style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
           >
             Track Order
           </button>

@@ -1,0 +1,93 @@
+{
+  "brand": "Loveplug",
+  "theme": "dark",
+  "description": "Global color tokens for the Loveplug landing page design, matched to the real logo (rose/hot-pink gradient on near-black).",
+  "colors": {
+    "bg": {
+      "value": "#0d0509",
+      "usage": "Page background (near-black with a wine undertone)"
+    },
+    "surface": {
+      "value": "#180a12",
+      "usage": "Card/section surfaces sitting above bg (e.g. product cards, story section)"
+    },
+    "surface-2": {
+      "value": "#22101a",
+      "usage": "Secondary/elevated surface, used in gradients and product media panels"
+    },
+    "line": {
+      "value": "#3d1e2c",
+      "usage": "Borders, dividers, hairlines"
+    },
+    "ink": {
+      "value": "#f8eef3",
+      "usage": "Primary text on dark backgrounds (headings, nav)"
+    },
+    "ink-dim": {
+      "value": "#c9a9ba",
+      "usage": "Secondary/body text on dark backgrounds"
+    },
+    "muted": {
+      "value": "#8c7180",
+      "usage": "Tertiary text, captions, placeholders"
+    },
+    "accent": {
+      "value": "#ff2e88",
+      "rgb": "255, 46, 136",
+      "usage": "Primary brand pink — buttons, links, icons, price tags, marquee background"
+    },
+    "accent-soft": {
+      "value": "#ffb6d9",
+      "rgb": "255, 182, 217",
+      "usage": "Light blush pink — headline emphasis (italic words), eyebrow labels, hover states"
+    },
+    "accent-deep": {
+      "value": "#7a0942",
+      "usage": "Deep rose — borders/shadows on accent elements, badge outlines"
+    },
+    "cream": {
+      "value": "#f2ece3",
+      "usage": "Warm neutral reserved for light-surface accents (unused in current dark build)"
+    },
+    "cream-ink": {
+      "value": "#1c1712",
+      "usage": "Text color if paired with the cream surface"
+    }
+  },
+  "accentTints": {
+    "description": "Common rgba(accent) opacity variants used throughout the CSS for glows, gradients and hover fills",
+    "values": [
+      "rgba(255, 46, 136, 0.05)",
+      "rgba(255, 46, 136, 0.08)",
+      "rgba(255, 46, 136, 0.12)",
+      "rgba(255, 46, 136, 0.35)",
+      "rgba(255, 46, 136, 0.4)",
+      "rgba(255, 46, 136, 0.55)"
+    ]
+  },
+  "accentSoftTints": {
+    "description": "Common rgba(accent-soft) opacity variants used for rings, text-strokes and soft glows",
+    "values": [
+      "rgba(255, 182, 217, 0.22)",
+      "rgba(255, 182, 217, 0.28)"
+    ]
+  },
+  "typography": {
+    "display": {
+      "family": "Playfair Display",
+      "fallback": "'Iowan Old Style', Georgia, serif",
+      "usage": "Headlines, wordmark, product names, pull quotes"
+    },
+    "sans": {
+      "family": "Inter",
+      "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "usage": "Body copy, nav, buttons, labels (stand-in for the live site's Geist)"
+    }
+  },
+  "otherBrandColors": {
+    "whatsappGreen": {
+      "value": "#25d366",
+      "usage": "WhatsApp floating action button — kept as WhatsApp's own brand color, not part of the Loveplug palette"
+    }
+  }
+}

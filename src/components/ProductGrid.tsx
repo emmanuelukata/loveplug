@@ -4,43 +4,18 @@ import { useState } from "react";
 import { Product } from "@/types/product";
 import ProductCard from "./ProductCard";
 
-export default function ProductGrid({
-  products,
-  categories,
-}: {
-  products: Product[];
-  categories: string[];
-}) {
+export default function ProductGrid({ products, categories }: { products: Product[]; categories: string[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-
-  const filtered =
-    selectedCategory === "All"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+  const filtered = selectedCategory === "All" ? products : products.filter((p) => p.category === selectedCategory);
 
   return (
     <div>
       <div className="flex flex-wrap gap-1">
-        <button
-          onClick={() => setSelectedCategory("All")}
-          className="px-5 py-2.5 text-sm transition-colors"
-          style={{
-            color: selectedCategory === "All" ? "#BF00FF" : "#555555",
-            fontWeight: selectedCategory === "All" ? 700 : 500,
-          }}
-        >
+        <button onClick={() => setSelectedCategory("All")} className="px-5 py-2.5 text-sm transition-colors" style={{ color: selectedCategory === "All" ? "#ff2e88" : "#8c7180", fontWeight: selectedCategory === "All" ? 700 : 500 }}>
           All
         </button>
         {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className="px-5 py-2.5 text-sm transition-colors"
-            style={{
-              color: selectedCategory === category ? "#BF00FF" : "#555555",
-              fontWeight: selectedCategory === category ? 700 : 500,
-            }}
-          >
+          <button key={category} onClick={() => setSelectedCategory(category)} className="px-5 py-2.5 text-sm transition-colors" style={{ color: selectedCategory === category ? "#ff2e88" : "#8c7180", fontWeight: selectedCategory === category ? 700 : 500 }}>
             {category}
           </button>
         ))}
@@ -51,9 +26,7 @@ export default function ProductGrid({
         ))}
       </div>
       {filtered.length === 0 && (
-        <p className="mt-12 text-center" style={{ color: "#555555" }}>
-          No products in this category.
-        </p>
+        <p className="mt-12 text-center" style={{ color: "#8c7180" }}>No products in this category.</p>
       )}
     </div>
   );

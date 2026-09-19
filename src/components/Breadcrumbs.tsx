@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface BreadcrumbItem {
@@ -7,10 +9,16 @@ interface BreadcrumbItem {
 
 export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav className="mb-6 text-sm text-muted" aria-label="Breadcrumb">
+    <nav className="mb-6 text-sm" style={{ color: "#8c7180" }} aria-label="Breadcrumb">
       <ol className="flex items-center gap-1.5">
         <li>
-          <Link href="/" className="transition-colors hover:text-foreground">
+          <Link
+            href="/"
+            className="transition-colors"
+            style={{ color: "#8c7180" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
+          >
             Home
           </Link>
         </li>
@@ -18,11 +26,17 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
           <li key={i} className="flex items-center gap-1.5">
             <span>/</span>
             {item.href ? (
-              <Link href={item.href} className="transition-colors hover:text-foreground">
+              <Link
+                href={item.href}
+                className="transition-colors"
+                style={{ color: "#8c7180" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
+              >
                 {item.label}
               </Link>
             ) : (
-              <span className="text-foreground">{item.label}</span>
+              <span style={{ color: "#f8eef3" }}>{item.label}</span>
             )}
           </li>
         ))}

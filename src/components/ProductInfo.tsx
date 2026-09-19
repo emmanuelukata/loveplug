@@ -41,13 +41,16 @@ export default function ProductInfo({ product }: { product: Product }) {
     <div>
       <Link
         href="/products"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+        className="mb-6 inline-flex items-center gap-1 text-sm transition-colors"
+        style={{ color: "#8c7180" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "#f8eef3")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#8c7180")}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         Back to Shop
       </Link>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-      <div className="relative aspect-square overflow-hidden bg-border">
+      <div className="relative aspect-square overflow-hidden" style={{ backgroundColor: "#3d1e2c" }}>
         <Image
           src={product.image}
           alt={product.name}
@@ -58,39 +61,39 @@ export default function ProductInfo({ product }: { product: Product }) {
         />
       </div>
       <div className="flex flex-col">
-        <p className="text-xs uppercase tracking-wider text-muted">
+        <p className="text-xs uppercase tracking-wider" style={{ color: "#8c7180" }}>
           {product.category}
         </p>
         <h1
-          className="mt-2 text-2xl font-bold tracking-tight text-[#111111] md:text-3xl"
-          style={{ fontFamily: "var(--font-display)" }}
+          className="mt-2 text-2xl font-bold tracking-tight md:text-3xl"
+          style={{ color: "#f8eef3", fontFamily: "var(--font-display)" }}
         >
           {product.name}
         </h1>
-        <p className="mt-3 text-lg font-medium text-primary">
+        <p className="mt-3 text-lg font-medium" style={{ color: "#ff2e88" }}>
           {formatPrice(product.price)}
         </p>
-        <p className="mt-6 leading-relaxed text-muted">
+        <p className="mt-6 leading-relaxed" style={{ color: "#8c7180" }}>
           {product.description}
         </p>
 
         {isUnavailable ? (
-          <p className="mt-8 text-sm font-medium uppercase tracking-wider text-muted">
+          <p className="mt-8 text-sm font-medium uppercase tracking-wider" style={{ color: "#8c7180" }}>
             Currently unavailable
           </p>
         ) : (
           <div className="mt-8">
-            <label className="text-sm text-muted">Quantity</label>
+            <label className="text-sm" style={{ color: "#8c7180" }}>Quantity</label>
             <div className="mt-2">
               <QuantitySelector value={quantity} onChange={setQuantity} />
             </div>
             <button
               onClick={handleAddToCart}
-              className={`mt-4 px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all ${
-                added
-                  ? "bg-green-600 text-white"
-                  : "bg-[#BF00FF] text-white hover:bg-[#9900CC]"
-              }`}
+              className="mt-4 px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all"
+              style={{
+                backgroundColor: added ? "#16a34a" : "#ff2e88",
+                color: "#f8eef3",
+              }}
             >
               {added ? "✓ Added to Cart" : "Add to Cart"}
             </button>
