@@ -30,10 +30,10 @@ export default function AgeGate() {
           This website contains content intended for adults aged 18 and over.<br />By entering, you confirm you are of legal age.
         </p>
         <div style={{ marginTop: "2.5rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-          <button onClick={handleConfirm} style={{ width: "100%", padding: "1rem", fontSize: "0.875rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#f8eef3", backgroundColor: "#ff2e88", border: "none" }}>
+          <button onClick={handleConfirm} style={{ width: "100%", padding: "0.875rem", fontSize: "0.875rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#f8eef3", backgroundColor: "#ff2e88", border: "none", cursor: "pointer" }}>
             I confirm I am 18+
           </button>
-          <button onClick={handleExit} style={{ width: "100%", padding: "1rem", fontSize: "0.875rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#c9a9ba", backgroundColor: "transparent", border: "2px solid #3d1e2c" }}>
+          <button onClick={handleExit} style={{ width: "100%", padding: "0.875rem", fontSize: "0.875rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#c9a9ba", backgroundColor: "transparent", border: "2px solid #3d1e2c", cursor: "pointer" }}>
             I am under 18
           </button>
         </div>

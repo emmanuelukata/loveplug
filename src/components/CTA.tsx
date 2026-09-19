@@ -65,7 +65,7 @@ export default function CTA() {
                 Loveplug is built at the intersection of design, health, and culture. We make intimacy simple, inclusive, and essential to everyday wellbeing.
               </p>
               <div className="mt-8">
-                <Link href="/products" className="inline-block px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90" style={{ backgroundColor: "#ff2e88" }}>
+                <Link href="/products" className="inline-block px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:opacity-90" style={{ backgroundColor: "#ff2e88" }}>
                   Shop Now
                 </Link>
               </div>
@@ -108,7 +108,7 @@ export default function CTA() {
           </p>
           <form className="mt-8 flex flex-col gap-3 sm:flex-row" onSubmit={(e) => e.preventDefault()}>
             <input type="email" placeholder="Enter your email" className="flex-1 px-5 py-4 text-sm outline-none" style={{ border: "1px solid #3d1e2c", color: "#f8eef3", backgroundColor: "#180a12" }} />
-            <button type="submit" className="px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:opacity-90" style={{ backgroundColor: "#ff2e88" }}>
+            <button type="submit" className="px-8 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90" style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}>
               Subscribe
             </button>
           </form>

@@ -15,10 +15,10 @@ export default function Hero() {
             Premium lifestyle and wellness products designed for pleasure, comfort, and confidence. Simple, effective, and made for you.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/products" className="inline-block px-10 py-4 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:scale-105" style={{ backgroundColor: "#ff2e88" }}>
+            <Link href="/products" className="inline-block px-10 py-3.5 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:scale-105" style={{ backgroundColor: "#ff2e88" }}>
               Shop Now
             </Link>
-            <Link href="#featured" className="inline-block px-10 py-4 text-sm font-semibold uppercase tracking-wider transition-all hover:bg-white hover:text-black" style={{ color: "#f8eef3", border: "2px solid #f8eef3" }}>
+            <Link href="#featured" className="inline-block px-10 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all hover:bg-white hover:text-black" style={{ color: "#f8eef3", border: "2px solid #f8eef3" }}>
               View Collection
             </Link>
           </div>
