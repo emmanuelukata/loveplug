@@ -43,8 +43,8 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
         {error && <p className="text-xs text-red-500">{error}</p>}
         <button
           type="submit"
-          className="w-full py-3.5 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-          style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
+          className="w-full text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
         >
           Enter
         </button>

@@ -28,8 +28,8 @@ export default function CartContents() {
         <p className="mt-4" style={{ color: "#8c7180" }}>Your cart is empty</p>
         <Link
           href="/products"
-          className="mt-8 inline-block px-8 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-          style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
+          className="mt-8 inline-block text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
         >
           Start Shopping
         </Link>
@@ -81,8 +81,8 @@ export default function CartContents() {
         </div>
         <Link
           href="/checkout"
-          className="mt-6 block w-full py-3.5 text-center text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-          style={{ backgroundColor: "#ff2e88", color: "#f8eef3" }}
+          className="mt-6 block w-full text-center text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
         >
           Proceed to Checkout
         </Link>

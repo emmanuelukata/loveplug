@@ -89,10 +89,11 @@ export default function ProductInfo({ product }: { product: Product }) {
             </div>
             <button
               onClick={handleAddToCart}
-              className="mt-4 px-8 py-3.5 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
+              className="mt-4 text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
               style={{
                 backgroundColor: added ? "#16a34a" : "#ff2e88",
                 color: "#f8eef3",
+                padding: "14px 32px",
               }}
             >
               {added ? "✓ Added to Cart" : "Add to Cart"}
