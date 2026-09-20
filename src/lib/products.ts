@@ -11,6 +11,9 @@ export const products: Product[] = [
     category: "Air-suction/Pressure Toys",
     image: "/products/air-suction.jpg",
     availability: "AVAILABLE",
+    badge: "Best Seller",
+    sizes: ["S", "M", "L"],
+    colors: ["Rose", "Lavender", "Black"],
   },
   {
     id: "2",
@@ -22,6 +25,8 @@ export const products: Product[] = [
     category: "Dildo",
     image: "/products/dildo.jpg",
     availability: "AVAILABLE",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["Skin Tone", "Rose", "Black"],
   },
   {
     id: "3",
@@ -33,6 +38,9 @@ export const products: Product[] = [
     category: "G-spot Vibrators",
     image: "/products/g-spot-vibrator.jpg",
     availability: "AVAILABLE",
+    badge: "Best Seller",
+    sizes: ["S", "M", "L"],
+    colors: ["Rose", "Lavender"],
   },
   {
     id: "4",
@@ -44,6 +52,8 @@ export const products: Product[] = [
     category: "G-spot Vibrators",
     image: "/products/g-spot-vibrator-2.jpg",
     availability: "AVAILABLE",
+    sizes: ["M", "L", "XL"],
+    colors: ["Rose", "Black"],
   },
   {
     id: "5",
@@ -55,6 +65,9 @@ export const products: Product[] = [
     category: "G-spot Vibrators",
     image: "/products/g-spot-vibrator-3.jpg",
     availability: "AVAILABLE",
+    badge: "New",
+    sizes: ["M", "L", "XL"],
+    colors: ["Rose", "Lavender", "Black"],
   },
   {
     id: "6",
@@ -66,6 +79,8 @@ export const products: Product[] = [
     category: "Couple Toys",
     image: "/products/couple-toys.jpg",
     availability: "AVAILABLE",
+    sizes: ["S", "M", "L"],
+    colors: ["Rose", "Lavender"],
   },
 ];
 
