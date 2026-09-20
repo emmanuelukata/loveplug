@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import ProductGrid from "@/components/ProductGrid";
-import { products, categories } from "@/lib/products";
+import { products, allCategories } from "@/lib/products";
 
 export const metadata = {
   title: "Products",
@@ -16,7 +16,7 @@ export default function ProductsPage() {
         Browse our curated collection
       </p>
       <div className="mt-8">
-        <ProductGrid products={products} categories={categories} />
+        <ProductGrid products={products} categories={allCategories} />
       </div>
     </Container>
   );

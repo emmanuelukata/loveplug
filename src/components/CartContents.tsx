@@ -29,7 +29,7 @@ export default function CartContents() {
         <Link
           href="/products"
           className="mt-8 inline-block text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px", borderRadius: 9999 }}
         >
           Start Shopping
         </Link>
@@ -82,7 +82,7 @@ export default function CartContents() {
         <Link
           href="/checkout"
           className="mt-6 block w-full text-center text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px", borderRadius: 9999 }}
         >
           Proceed to Checkout
         </Link>

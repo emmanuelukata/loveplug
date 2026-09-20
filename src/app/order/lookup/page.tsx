@@ -50,7 +50,7 @@ export default function OrderLookupPage() {
           <button
             type="submit"
             className="w-full text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-            style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
+            style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px", borderRadius: 9999 }}
           >
             Track Order
           </button>

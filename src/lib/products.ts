@@ -8,12 +8,16 @@ export const products: Product[] = [
     description:
       "Suction and pressure toy designed for intense, targeted stimulation. Body-safe silicone with multiple intensity levels.",
     price: 15000,
-    category: "Air-suction/Pressure Toys",
+    category: "Women",
+    categoryId: "women",
+    productType: "Stimulators",
     image: "/products/air-suction.jpg",
     availability: "AVAILABLE",
     badge: "Best Seller",
+    featured: true,
     sizes: ["S", "M", "L"],
     colors: ["Rose", "Lavender", "Black"],
+    collections: ["featured", "new-arrivals"],
   },
   {
     id: "2",
@@ -22,11 +26,14 @@ export const products: Product[] = [
     description:
       "Classic design with a realistic feel. Made from premium body-safe silicone for comfortable, pleasurable use.",
     price: 12000,
-    category: "Dildo",
+    category: "Women",
+    categoryId: "women",
+    productType: "G-Spot Vibrators",
     image: "/products/dildo.jpg",
     availability: "AVAILABLE",
     sizes: ["S", "M", "L", "XL"],
     colors: ["Skin Tone", "Rose", "Black"],
+    collections: ["beginner-couples", "gift-ideas"],
   },
   {
     id: "3",
@@ -35,12 +42,16 @@ export const products: Product[] = [
     description:
       "Ergonomically curved to hit the G-spot with ease. Powerful vibrations with multiple speed settings.",
     price: 18000,
-    category: "G-spot Vibrators",
+    category: "Women",
+    categoryId: "women",
+    productType: "G-Spot Vibrators",
     image: "/products/g-spot-vibrator.jpg",
     availability: "AVAILABLE",
     badge: "Best Seller",
+    featured: true,
     sizes: ["S", "M", "L"],
     colors: ["Rose", "Lavender"],
+    collections: ["featured", "date-night", "beginner-couples"],
   },
   {
     id: "4",
@@ -49,11 +60,14 @@ export const products: Product[] = [
     description:
       "Upgraded G-spot vibrator with deeper vibrations and a smoother tip. Whisper-quiet and fully waterproof.",
     price: 20000,
-    category: "G-spot Vibrators",
+    category: "Women",
+    categoryId: "women",
+    productType: "G-Spot Vibrators",
     image: "/products/g-spot-vibrator-2.jpg",
     availability: "AVAILABLE",
     sizes: ["M", "L", "XL"],
     colors: ["Rose", "Black"],
+    collections: ["premium-couples", "vacation"],
   },
   {
     id: "5",
@@ -62,12 +76,16 @@ export const products: Product[] = [
     description:
       "Premium G-spot vibrator with rotating beads and thrusting action. Multi-function for customizable pleasure.",
     price: 25000,
-    category: "G-spot Vibrators",
+    category: "Women",
+    categoryId: "women",
+    productType: "G-Spot Vibrators",
     image: "/products/g-spot-vibrator-3.jpg",
     availability: "AVAILABLE",
     badge: "New",
+    featured: true,
     sizes: ["M", "L", "XL"],
     colors: ["Rose", "Lavender", "Black"],
+    collections: ["featured", "new-arrivals", "premium-couples"],
   },
   {
     id: "6",
@@ -76,12 +94,16 @@ export const products: Product[] = [
     description:
       "Designed for shared pleasure. Worn during intimacy to enhance sensations for both partners.",
     price: 22000,
-    category: "Couple Toys",
+    category: "Couples",
+    categoryId: "couples",
+    productType: "Couple Toys",
     image: "/products/couple-toys.jpg",
     availability: "AVAILABLE",
+    featured: true,
     sizes: ["S", "M", "L"],
     colors: ["Rose", "Lavender"],
+    collections: ["featured", "date-night", "beginner-couples", "gift-ideas"],
   },
 ];
 
-export const categories = [...new Set(products.map((p) => p.category))];
+export const allCategories = [...new Set(products.map((p) => p.category))];

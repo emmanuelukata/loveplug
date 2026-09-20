@@ -142,7 +142,7 @@ export default function CheckoutForm() {
         <Link
           href="/products"
           className="mt-8 inline-block text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90"
-          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
+          style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px", borderRadius: 9999 }}
         >
           Continue Shopping
         </Link>
@@ -372,7 +372,7 @@ export default function CheckoutForm() {
             type="submit"
             disabled={isSubmitting}
             className="w-full text-sm font-semibold uppercase tracking-wider transition-all hover:opacity-90 disabled:opacity-50"
-            style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px" }}
+            style={{ backgroundColor: "#ff2e88", color: "#f8eef3", padding: "14px 32px", borderRadius: 9999 }}
           >
             {isSubmitting ? "Placing Order..." : "Place Order"}
           </button>

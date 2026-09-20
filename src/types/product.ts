@@ -13,10 +13,14 @@ export interface Product {
   description: string;
   price: number;
   category: string;
+  categoryId: string;
+  productType: string;
   image: string;
   availability: Availability;
   badge?: string;
+  featured?: boolean;
   sizes?: string[];
   colors?: string[];
   variants?: ProductVariant[];
+  collections?: string[];
 }

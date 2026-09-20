@@ -230,7 +230,7 @@ export default function ProductInfo({ product }: { product: Product }) {
                     letterSpacing: "0.04em",
                     textTransform: "uppercase",
                     border: "none",
-                    borderRadius: 8,
+                    borderRadius: 9999,
                     cursor: "pointer",
                     backgroundColor: added ? "#16a34a" : "#ff2e88",
                     color: "#f8eef3",
