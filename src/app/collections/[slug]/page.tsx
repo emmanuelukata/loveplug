@@ -26,7 +26,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
       <h1 style={{ color: "#f8eef3", fontFamily: "var(--font-display)", fontSize: "2rem", fontWeight: 700 }}>{collection.name}</h1>
       <p style={{ color: "#8c7180", marginTop: 8 }}>{collection.description}</p>
       <div style={{ marginTop: 32 }}>
-        <ProductGrid products={filtered} categories={[]} />
+        <ProductGrid products={filtered} />
       </div>
     </Container>
   );

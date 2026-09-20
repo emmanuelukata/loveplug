@@ -2,85 +2,111 @@
 
 import { useState, useMemo } from "react";
 import { Product } from "@/types/product";
+import { categories } from "@/lib/categories";
 import ProductCard from "./ProductCard";
 
 type SortOption = "featured" | "newest" | "price-low" | "price-high";
 
-export default function ProductGrid({ products, categories }: { products: Product[]; categories: string[] }) {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+const SORT_OPTIONS: { value: SortOption; label: string }[] = [
+  { value: "featured", label: "Featured" },
+  { value: "newest", label: "Newest" },
+  { value: "price-low", label: "Price: Low to High" },
+  { value: "price-high", label: "Price: High to Low" },
+];
+
+export default function ProductGrid({ products }: { products: Product[] }) {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<SortOption>("featured");
 
   const filtered = useMemo(() => {
-    const base = selectedCategory === "All" ? products : products.filter((p) => p.category === selectedCategory);
+    let result = selectedCategory === "all" ? products : products.filter((p) => p.categoryId === selectedCategory);
 
-    const sorted = [...base];
     switch (sortBy) {
-      case "featured":
-        sorted.sort((a, b) => {
-          if (a.featured && !b.featured) return -1;
-          if (!a.featured && b.featured) return 1;
-          return 0;
-        });
-        break;
       case "newest":
-        sorted.sort((a, b) => Number(b.id) - Number(a.id));
+        result = [...result].sort((a, b) => Number(b.id) - Number(a.id));
         break;
       case "price-low":
-        sorted.sort((a, b) => a.price - b.price);
+        result = [...result].sort((a, b) => a.price - b.price);
         break;
       case "price-high":
-        sorted.sort((a, b) => b.price - a.price);
+        result = [...result].sort((a, b) => b.price - a.price);
+        break;
+      case "featured":
+      default:
+        result = [...result].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
         break;
     }
-    return sorted;
+    return result;
   }, [products, selectedCategory, sortBy]);
 
   return (
     <div>
-      <div className="flex flex-wrap items-center gap-1">
-        <button
-          onClick={() => setSelectedCategory("All")}
-          className="px-5 py-2.5 text-sm transition-colors"
-          style={{ color: selectedCategory === "All" ? "#ff2e88" : "#8c7180", fontWeight: selectedCategory === "All" ? 700 : 500 }}
-        >
-          All
-        </button>
-        {categories.map((category) => (
+      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
           <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className="px-5 py-2.5 text-sm transition-colors"
-            style={{ color: selectedCategory === category ? "#ff2e88" : "#8c7180", fontWeight: selectedCategory === category ? 700 : 500 }}
-          >
-            {category}
-          </button>
-        ))}
-        <div className="ml-auto">
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="px-4 py-2 text-sm outline-none"
+            onClick={() => setSelectedCategory("all")}
             style={{
-              backgroundColor: "transparent",
-              border: "1px solid #3d1e2c",
-              color: "#c9a9ba",
-              borderRadius: 9999,
+              padding: "10px 20px",
+              fontSize: 14,
+              fontWeight: selectedCategory === "all" ? 700 : 500,
+              color: selectedCategory === "all" ? "#ff2e88" : "#8c7180",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
             }}
           >
-            <option value="featured">Featured</option>
-            <option value="newest">Newest</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-          </select>
+            All
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              style={{
+                padding: "10px 20px",
+                fontSize: 14,
+                fontWeight: selectedCategory === cat.id ? 700 : 500,
+                color: selectedCategory === cat.id ? "#ff2e88" : "#8c7180",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              {cat.name}
+            </button>
+          ))}
         </div>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as SortOption)}
+          style={{
+            padding: "8px 12px",
+            fontSize: 13,
+            color: "#c9a9ba",
+            backgroundColor: "transparent",
+            border: "1px solid #3d1e2c",
+            borderRadius: 8,
+            cursor: "pointer",
+            outline: "none",
+          }}
+        >
+          {SORT_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value} style={{ backgroundColor: "#180a12", color: "#f8eef3" }}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
       </div>
-      <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4">
+      <div className="product-grid" style={{ marginTop: 40, display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px 16px" }}>
+        <style>{`
+          @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+          @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr) !important; } }
+        `}</style>
         {filtered.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
       {filtered.length === 0 && (
-        <p className="mt-12 text-center" style={{ color: "#8c7180" }}>No products in this category.</p>
+        <p style={{ marginTop: 48, textAlign: "center", color: "#8c7180" }}>No products in this category.</p>
       )}
     </div>
   );
