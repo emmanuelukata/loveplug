@@ -1,6 +1,6 @@
 "use server";
 
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import { getOrder, saveOrder } from "@/lib/orders";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -52,7 +52,7 @@ export async function uploadReceipt(
   const ext = file.name.split(".").pop() || "jpg";
   const filePath = `receipts/${reference}_${Date.now()}.${ext}`;
 
-  const { error: uploadError } = await supabase.storage
+  const { error: uploadError } = await supabaseAdmin.storage
     .from("receipts")
     .upload(filePath, file, {
       contentType: file.type,
@@ -64,7 +64,7 @@ export async function uploadReceipt(
   }
 
   // 6. Get public URL
-  const { data: urlData } = supabase.storage
+  const { data: urlData } = supabaseAdmin.storage
     .from("receipts")
     .getPublicUrl(filePath);
 

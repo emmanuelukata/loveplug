@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { supabaseAdmin } from "./supabase";
 
 export type OrderStatus =
   | "PENDING_PAYMENT"
@@ -37,7 +37,7 @@ export interface Order {
 }
 
 export async function saveOrder(order: Order): Promise<void> {
-  const { error } = await supabase.from("orders").upsert({
+  const { error } = await supabaseAdmin.from("orders").upsert({
     reference: order.reference,
     status: order.status,
     items: order.items,
@@ -61,7 +61,7 @@ export async function saveOrder(order: Order): Promise<void> {
 }
 
 export async function getOrder(reference: string): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from("orders")
     .select("*")
     .eq("reference", reference)

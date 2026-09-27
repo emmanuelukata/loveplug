@@ -1,6 +1,6 @@
 "use server";
 
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import {
   getOrder,
   saveOrder,
@@ -12,7 +12,7 @@ import {
 } from "@/lib/email";
 
 export async function getAllOrders() {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from("orders")
     .select("*")
     .order("created_at", { ascending: false });
