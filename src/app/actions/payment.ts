@@ -21,13 +21,23 @@ export async function confirmPayment(reference: string): Promise<PaymentResult> 
 
   order.status = "PAYMENT_SUBMITTED";
   order.updatedAt = new Date().toISOString();
-  await saveOrder(order);
 
-  await sendPaymentSubmitted(
-    order.customer.email,
-    order.reference,
-    order.customer.fullName,
-  );
+  try {
+    await saveOrder(order);
+  } catch (err) {
+    console.error("Failed to save order:", err);
+    return { success: false, error: "Failed to update order. Please try again." };
+  }
+
+  try {
+    await sendPaymentSubmitted(
+      order.customer.email,
+      order.reference,
+      order.customer.fullName,
+    );
+  } catch (err) {
+    console.error("Failed to send payment email:", err);
+  }
 
   return { success: true };
 }

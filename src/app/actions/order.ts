@@ -129,15 +129,24 @@ export async function createOrder(input: CheckoutInput): Promise<OrderResult> {
   };
 
   // 7. Save order
-  await saveOrder(order);
+  try {
+    await saveOrder(order);
+  } catch (err) {
+    console.error("Failed to save order:", err);
+    return { success: false, error: "Failed to save order. Please try again." };
+  }
 
-  // 8. Send confirmation email
-  await sendOrderConfirmation(
-    order.customer.email,
-    order.reference,
-    order.customer.fullName,
-    order.subtotal,
-  );
+  // 8. Send confirmation email (non-blocking — don't fail the order if email fails)
+  try {
+    await sendOrderConfirmation(
+      order.customer.email,
+      order.reference,
+      order.customer.fullName,
+      order.subtotal,
+    );
+  } catch (err) {
+    console.error("Failed to send confirmation email:", err);
+  }
 
   // 9. Return confirmation
   return { success: true, reference };

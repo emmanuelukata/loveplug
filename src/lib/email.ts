@@ -1,11 +1,20 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.warn("RESEND_API_KEY not set — emails will not be sent");
+    return null;
+  }
+  return new Resend(key);
+}
 
 const FROM_EMAIL = `Loveplug <notifications@resend.dev>`;
 
 export async function sendOrderConfirmation(to: string, reference: string, fullName: string, subtotal: number) {
   try {
+    const resend = getResend();
+    if (!resend) return;
     await resend.emails.send({
       from: FROM_EMAIL,
       to,
@@ -29,6 +38,8 @@ export async function sendOrderConfirmation(to: string, reference: string, fullN
 
 export async function sendPaymentSubmitted(to: string, reference: string, fullName: string) {
   try {
+    const resend = getResend();
+    if (!resend) return;
     await resend.emails.send({
       from: FROM_EMAIL,
       to,
@@ -51,6 +62,8 @@ export async function sendPaymentSubmitted(to: string, reference: string, fullNa
 
 export async function sendPaymentConfirmed(to: string, reference: string, fullName: string) {
   try {
+    const resend = getResend();
+    if (!resend) return;
     await resend.emails.send({
       from: FROM_EMAIL,
       to,
@@ -72,6 +85,8 @@ export async function sendPaymentConfirmed(to: string, reference: string, fullNa
 
 export async function sendOrderShipped(to: string, reference: string, fullName: string) {
   try {
+    const resend = getResend();
+    if (!resend) return;
     await resend.emails.send({
       from: FROM_EMAIL,
       to,
